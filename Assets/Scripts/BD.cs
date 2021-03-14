@@ -23,5 +23,6 @@ public static class MixerGroup
 public static class AnimParam
 {
     public static string Speed = "Speed";
+    public static string Attack = "Attack";
     public static string Shot = "Shot";
 }
