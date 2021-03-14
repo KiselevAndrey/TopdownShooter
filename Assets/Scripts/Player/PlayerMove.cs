@@ -1,27 +1,27 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
     [SerializeField, Range(0,10)] float speed;
 
+    Player _player;
     Rigidbody2D _rb;
+    Animator _anim;
 
     #region Awake Start Update
     void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _anim = GetComponent<Animator>();
+        _player = GetComponent<Player>();
     }
 
     private void FixedUpdate()
     {
-        Move();
-    }
+        if (_player.IsDead()) return;
 
-    void Update()
-    {
-        Rotate();        
+        Move();
+        Rotate();
     }
     #endregion
 
@@ -32,6 +32,7 @@ public class PlayerMove : MonoBehaviour
         float inputY = Input.GetAxis(AxesNames.Vertical);
 
         _rb.velocity = new Vector2(inputX, inputY).normalized * speed;
+        _anim.SetFloat(AnimParam.Speed, _rb.velocity.magnitude);
     }
 
     void Rotate()

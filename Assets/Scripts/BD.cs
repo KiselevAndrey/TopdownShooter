@@ -3,6 +3,7 @@ public static class AxesNames
 {
     public static string Horizontal = "Horizontal";
     public static string Vertical = "Vertical";
+    public static string Fire1 = "Fire1";
 }
 
 public static class TagsNames
@@ -22,4 +23,5 @@ public static class MixerGroup
 public static class AnimParam
 {
     public static string Speed = "Speed";
+    public static string Shot = "Shot";
 }
