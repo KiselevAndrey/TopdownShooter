@@ -4,10 +4,12 @@ public class Enemy : MonoBehaviour
 {
     public EnemyShot shot;
     public EnemyWalk walk;
+    Health health;
 
     #region Awake Start Update
     void Awake()
     {
+        health = GetComponent<Health>();
     }
 
     private void Start()
@@ -19,5 +21,20 @@ public class Enemy : MonoBehaviour
     }
     #endregion
 
-    public bool IsDead() => false;
+    public bool IsDead() => health.IsDead();
+
+
+    #region OnCillision
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        switch (collision.gameObject.tag)
+        {
+            case TagsNames.Bullet:
+                Bullet bull = collision.gameObject.GetComponent<Bullet>();
+                health.Hit(bull.damage);
+                Destroy(bull.gameObject);
+                break;
+        }
+    }
+    #endregion
 }

@@ -11,6 +11,7 @@ public static class TagsNames
     public const string Player = "Player";
     public const string Enemy = "Enemy";
     public const string Bonus = "Bonus";
+    public const string Bullet = "Bullet";
 }
 
 public static class MixerGroup
@@ -25,4 +26,5 @@ public static class AnimParam
     public static string Speed = "Speed";
     public static string Attack = "Attack";
     public static string Shot = "Shot";
+    public static string Dead = "Dead";
 }
