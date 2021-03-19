@@ -2,8 +2,8 @@
 
 public class Enemy : MonoBehaviour
 {
-    public EnemyShot shot;
-    public EnemyWalk walk;
+    EnemyShot shot;
+    EnemyWalk walk;
     Health health;
 
     #region Awake Start Update

@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Girl Walk Pistol
+  m_Name: Attack
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,19 +20,23 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: a2fbb84cab37c6c4982ba75b943ba06a, type: 3}
+      value: {fileID: 21300000, guid: 7ce2200bcdc325a469ea4eddb2aacf2e, type: 3}
     - time: 0.16666667
-      value: {fileID: 21300000, guid: e5ae505f8794f1f469fe727bc8ceff7e, type: 3}
+      value: {fileID: 21300000, guid: 31edd2b7c8789504fad177100ccaccc8, type: 3}
     - time: 0.33333334
-      value: {fileID: 21300000, guid: 5dad08e2a0b54354cb7aac786d72f9d3, type: 3}
+      value: {fileID: 21300000, guid: 19862f0d27fd8804da0c570979e9d4c9, type: 3}
     - time: 0.5
-      value: {fileID: 21300000, guid: 02668d094acb9cb45b02a7025f4a21db, type: 3}
+      value: {fileID: 21300000, guid: 2a9d164b56028a8419b5d8d92087a83a, type: 3}
     - time: 0.6666667
-      value: {fileID: 21300000, guid: 19de79e0076d33c43a783b75dbd37d9a, type: 3}
+      value: {fileID: 21300000, guid: 71981534aef55fe4dba730f54dfa83f9, type: 3}
     - time: 0.8333333
-      value: {fileID: 21300000, guid: 8bdc2891e6e122f49b49bdc0b2b5f9d4, type: 3}
+      value: {fileID: 21300000, guid: ed08890d2ef2fd942ba7a8506bfc4170, type: 3}
     - time: 1
-      value: {fileID: 21300000, guid: a2fbb84cab37c6c4982ba75b943ba06a, type: 3}
+      value: {fileID: 21300000, guid: 1cfb80351a0bfb8438356c05f8a40ef9, type: 3}
+    - time: 1.1666666
+      value: {fileID: 21300000, guid: 61dc1353f4d15714aa8d6341c3973662, type: 3}
+    - time: 1.3333334
+      value: {fileID: 21300000, guid: c7e11cf82cbf16742a9976ebe4839527, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -52,24 +56,26 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: a2fbb84cab37c6c4982ba75b943ba06a, type: 3}
-    - {fileID: 21300000, guid: e5ae505f8794f1f469fe727bc8ceff7e, type: 3}
-    - {fileID: 21300000, guid: 5dad08e2a0b54354cb7aac786d72f9d3, type: 3}
-    - {fileID: 21300000, guid: 02668d094acb9cb45b02a7025f4a21db, type: 3}
-    - {fileID: 21300000, guid: 19de79e0076d33c43a783b75dbd37d9a, type: 3}
-    - {fileID: 21300000, guid: 8bdc2891e6e122f49b49bdc0b2b5f9d4, type: 3}
-    - {fileID: 21300000, guid: a2fbb84cab37c6c4982ba75b943ba06a, type: 3}
+    - {fileID: 21300000, guid: 7ce2200bcdc325a469ea4eddb2aacf2e, type: 3}
+    - {fileID: 21300000, guid: 31edd2b7c8789504fad177100ccaccc8, type: 3}
+    - {fileID: 21300000, guid: 19862f0d27fd8804da0c570979e9d4c9, type: 3}
+    - {fileID: 21300000, guid: 2a9d164b56028a8419b5d8d92087a83a, type: 3}
+    - {fileID: 21300000, guid: 71981534aef55fe4dba730f54dfa83f9, type: 3}
+    - {fileID: 21300000, guid: ed08890d2ef2fd942ba7a8506bfc4170, type: 3}
+    - {fileID: 21300000, guid: 1cfb80351a0bfb8438356c05f8a40ef9, type: 3}
+    - {fileID: 21300000, guid: 61dc1353f4d15714aa8d6341c3973662, type: 3}
+    - {fileID: 21300000, guid: c7e11cf82cbf16742a9976ebe4839527, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 1.0166667
+    m_StopTime: 1.35
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
     m_HasAdditiveReferencePose: 0
-    m_LoopTime: 1
+    m_LoopTime: 0
     m_LoopBlend: 0
     m_LoopBlendOrientation: 0
     m_LoopBlendPositionY: 0
