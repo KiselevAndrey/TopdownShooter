@@ -1,13 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
     [SerializeField] float attackRange;
     [SerializeField, Range(0, 2)] float attackRate;
 
-    Animator _anim;
+    [Header("Дистанции")]
+    public float maxDistance;
+    public float minDistance;
+
     Enemy _enemy;
 
     float timeLastShot;
@@ -15,7 +16,6 @@ public class EnemyAttack : MonoBehaviour
     #region Awake Start Update
     void Awake()
     {
-        _anim = GetComponent<Animator>();
         _enemy = GetComponent<Enemy>();
     }
 
@@ -26,7 +26,7 @@ public class EnemyAttack : MonoBehaviour
 
     void Update()
     {
-        if (_enemy.walk.CantUpdate()) return;
+        if (!_enemy.walk.CanUpdate()) return;
 
         CheckAttack();
     }
@@ -37,9 +37,9 @@ public class EnemyAttack : MonoBehaviour
     {
         if (timeLastShot >= attackRate)
         {
-            if (_enemy.walk.direction.magnitude <= attackRange)
+            if (_enemy.direction.magnitude <= attackRange)
             {
-                _anim.SetTrigger(AnimParam.Shot);
+                _enemy.anim.SetTrigger(AnimParam.Shot);
                 timeLastShot = 0;
             }
         }

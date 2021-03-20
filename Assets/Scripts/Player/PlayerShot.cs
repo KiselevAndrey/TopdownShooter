@@ -35,6 +35,7 @@ public class PlayerShot : MonoBehaviour
             if (Input.GetAxis(AxesNames.Fire1) > 0)
             {
                 _anim.SetTrigger(AnimParam.Shot);
+                Shot();
                 timeLastShot = 0;
             }
         }

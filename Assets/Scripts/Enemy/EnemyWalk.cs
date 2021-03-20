@@ -1,21 +1,29 @@
 ﻿using UnityEngine;
 
+// набор скорости и торможение
+// скорость разворота
+
 public class EnemyWalk : MonoBehaviour
 {
-    public Transform target;
-    [SerializeField, Range(0, 10)] float speed;
+    [Header("Скорости")]
+    [SerializeField, Range(0, 10)] float maxSpeed;
 
-    [HideInInspector] public Vector2 direction;
+    [Header("Дистанции")]
+    public float maxTrackingDistance;
+
+    [Header("Доп данные")]
+    [SerializeField] bool shotPriority;
 
     Rigidbody2D _rb;
-    Animator _anim;
     Enemy _enemy;
+
+    float _speed;
+    bool _walk;
 
     #region Awake Start Update
     void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _anim = GetComponent<Animator>();
         _enemy = GetComponent<Enemy>();
     }
 
@@ -26,35 +34,44 @@ public class EnemyWalk : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (CantUpdate()) return;
+        if (!CanUpdate()) return;
 
         Folloving();
     }
     #endregion
 
-    public bool CantUpdate() => _enemy.IsDead() || !target;
+    public bool CanUpdate() => !_enemy.IsDead() && _enemy.target;
 
     #region Folloving
     void Folloving()
     {
-        direction = target.position - transform.position;
+        // Move
+        float distance = _enemy.direction.magnitude;
+        print(distance);
+        float minDistance = shotPriority ? _enemy.shot.minDistance : _enemy.attack.minDistance;
+        float maxDistance = shotPriority ? _enemy.shot.maxDistance : _enemy.attack.maxDistance;
 
-        _rb.velocity = direction.normalized * speed;
-        _anim.SetFloat(AnimParam.Speed, _rb.velocity.magnitude);
-
-        transform.up = direction;
-    }
-    #endregion
-
-    #region OnTrigger
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        switch (collision.gameObject.tag)
+        if (_walk)
         {
-            case TagsNames.Player:
-                target = FindObjectOfType<Player>().GetComponent<Transform>();
-                break;
+            _rb.velocity = _enemy.direction.normalized * maxSpeed;
+            _walk = distance >= minDistance;
         }
+        else
+        {
+            _rb.velocity = Vector2.zero;
+            _walk = distance >= maxDistance;
+        }
+        _enemy.anim.SetFloat(AnimParam.Speed, _rb.velocity.magnitude);
+
+
+        // rotation
+        transform.up = _enemy.direction;
     }
     #endregion
+
+    public void DontMove()
+    {
+        _rb.velocity = Vector2.zero;
+        _rb.isKinematic = true;
+    }
 }

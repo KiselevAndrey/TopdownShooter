@@ -2,13 +2,16 @@
 
 public class EnemyShot : MonoBehaviour
 {
-    [SerializeField] float fireRange;
+    [SerializeField] float shotRange;
     [SerializeField, Range(0, 2)] float fireRate;
 
     [SerializeField] Transform gunPos;
     [SerializeField] GameObject bulletPrefab;
 
-    Animator _anim;
+    [Header("Дистанции")]
+    public float maxDistance;
+    public float minDistance;
+
     Enemy _enemy;
 
     float timeLastShot;
@@ -16,7 +19,6 @@ public class EnemyShot : MonoBehaviour
     #region Awake Start Update
     void Awake()
     {
-        _anim = GetComponent<Animator>();
         _enemy = GetComponent<Enemy>();
     }
 
@@ -27,7 +29,7 @@ public class EnemyShot : MonoBehaviour
 
     void Update()
     {
-        if (_enemy.walk.CantUpdate()) return;
+        if (!_enemy.walk.CanUpdate()) return;
 
         CheckShot();
     }
@@ -38,9 +40,9 @@ public class EnemyShot : MonoBehaviour
     {
         if (timeLastShot >= fireRate)
         {
-            if (_enemy.walk.direction.magnitude <= fireRange)
+            if (_enemy.direction.magnitude <= shotRange)
             {
-                _anim.SetTrigger(AnimParam.Shot);
+                _enemy.anim.SetTrigger(AnimParam.Shot);
                 timeLastShot = 0;
             }
         }
