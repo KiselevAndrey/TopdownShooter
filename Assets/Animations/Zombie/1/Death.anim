@@ -31,6 +31,8 @@ AnimationClip:
       value: {fileID: 21300000, guid: 38d4cfffb34b8e74f814cf4a8732783c, type: 3}
     - time: 0.8333333
       value: {fileID: 21300000, guid: 270d002fb6cd3cc4ab55c666d3f16d17, type: 3}
+    - time: 1.1666666
+      value: {fileID: 21300000, guid: 270d002fb6cd3cc4ab55c666d3f16d17, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -56,12 +58,13 @@ AnimationClip:
     - {fileID: 21300000, guid: bc50ebd461a0a6040b632b1b7241c54a, type: 3}
     - {fileID: 21300000, guid: 38d4cfffb34b8e74f814cf4a8732783c, type: 3}
     - {fileID: 21300000, guid: 270d002fb6cd3cc4ab55c666d3f16d17, type: 3}
+    - {fileID: 21300000, guid: 270d002fb6cd3cc4ab55c666d3f16d17, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.84999996
+    m_StopTime: 1.1833333
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -80,4 +83,11 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 1
+    functionName: DestroyObject
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0

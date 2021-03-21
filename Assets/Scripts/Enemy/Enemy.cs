@@ -63,20 +63,27 @@ public class Enemy : MonoBehaviour
 
         walk.DontMove();
 
-        walk.enabled = false;
-        shot.enabled = false;
-        attack.enabled = false;
+        EnableObject(false);
 
         body.enabled = false;
         Vector3 temp = transform.position;
         temp.z += 0.1f;
         transform.position = temp;
     }
+
+    void DestroyObject() => Destroy(gameObject);
     #endregion
 
     public void LoseTarget()
     {
         target = null;
+    }
+
+    void EnableObject(bool value)
+    {
+        walk.enabled = value;
+        shot.enabled = value;
+        attack.enabled = value;
     }
 
     #region OnCollision
@@ -99,6 +106,18 @@ public class Enemy : MonoBehaviour
                 direction = target.position - transform.position;
                 break;
         }
+    }
+    #endregion
+
+    #region OnBecame
+    private void OnBecameInvisible()
+    {
+        EnableObject(false);
+    }
+
+    private void OnBecameVisible()
+    {
+        EnableObject(true);
     }
     #endregion
 }

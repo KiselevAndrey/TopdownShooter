@@ -120,6 +120,52 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &174108115
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 174108116}
+  - component: {fileID: 174108117}
+  m_Layer: 0
+  m_Name: ZombieSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &174108116
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174108115}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.36, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &174108117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 174108115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4d948c0d3fe0e541ae97a34c673192f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 4957931446536731981, guid: 13692bee33df4a142a2b6af402a28dcb, type: 3}
+  count: 1000
+  range: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,7 +316,7 @@ PrefabInstance:
     - target: {fileID: 379703862210201499, guid: 5bbf2cfa40fb6a2418ff180f4f71bbbe,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 379703862210201499, guid: 5bbf2cfa40fb6a2418ff180f4f71bbbe,
         type: 3}
@@ -299,85 +345,52 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5bbf2cfa40fb6a2418ff180f4f71bbbe, type: 3}
---- !u!1001 &1528448660
-PrefabInstance:
+--- !u!1 &947635558
+GameObject:
   m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4957931446536731981, guid: 13692bee33df4a142a2b6af402a28dcb,
-        type: 3}
-      propertyPath: m_Name
-      value: Zombie (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4957931446536731980, guid: 13692bee33df4a142a2b6af402a28dcb,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -8.26
-      objectReference: {fileID: 0}
-    - target: {fileID: 4957931446536731980, guid: 13692bee33df4a142a2b6af402a28dcb,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5.73
-      objectReference: {fileID: 0}
-    - target: {fileID: 4957931446536731980, guid: 13692bee33df4a142a2b6af402a28dcb,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4957931446536731980, guid: 13692bee33df4a142a2b6af402a28dcb,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4957931446536731980, guid: 13692bee33df4a142a2b6af402a28dcb,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4957931446536731980, guid: 13692bee33df4a142a2b6af402a28dcb,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4957931446536731980, guid: 13692bee33df4a142a2b6af402a28dcb,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4957931446536731980, guid: 13692bee33df4a142a2b6af402a28dcb,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4957931446536731980, guid: 13692bee33df4a142a2b6af402a28dcb,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4957931446536731980, guid: 13692bee33df4a142a2b6af402a28dcb,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4957931446536731980, guid: 13692bee33df4a142a2b6af402a28dcb,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7020638765846435436, guid: 13692bee33df4a142a2b6af402a28dcb,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7020638765846435436, guid: 13692bee33df4a142a2b6af402a28dcb,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 13692bee33df4a142a2b6af402a28dcb, type: 3}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 947635560}
+  - component: {fileID: 947635559}
+  m_Layer: 0
+  m_Name: Barrel Spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &947635559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 947635558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4d948c0d3fe0e541ae97a34c673192f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 379703862210201498, guid: 5bbf2cfa40fb6a2418ff180f4f71bbbe, type: 3}
+  count: 100
+  range: 60
+--- !u!4 &947635560
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 947635558}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1548449288
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -428,7 +441,7 @@ PrefabInstance:
     - target: {fileID: 8702202125423338020, guid: bea8dd8cee9e08a4f934480caa640e99,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8702202125423338020, guid: bea8dd8cee9e08a4f934480caa640e99,
         type: 3}
@@ -585,7 +598,7 @@ Transform:
   m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2059868358
 PrefabInstance:
@@ -637,7 +650,7 @@ PrefabInstance:
     - target: {fileID: 379703862210201499, guid: 5bbf2cfa40fb6a2418ff180f4f71bbbe,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 379703862210201499, guid: 5bbf2cfa40fb6a2418ff180f4f71bbbe,
         type: 3}
@@ -716,7 +729,7 @@ PrefabInstance:
     - target: {fileID: 379703862210201499, guid: 5bbf2cfa40fb6a2418ff180f4f71bbbe,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 379703862210201499, guid: 5bbf2cfa40fb6a2418ff180f4f71bbbe,
         type: 3}
@@ -795,7 +808,7 @@ PrefabInstance:
     - target: {fileID: 379703862210201499, guid: 5bbf2cfa40fb6a2418ff180f4f71bbbe,
         type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 379703862210201499, guid: 5bbf2cfa40fb6a2418ff180f4f71bbbe,
         type: 3}
@@ -874,7 +887,7 @@ PrefabInstance:
     - target: {fileID: 379703862210201499, guid: 5bbf2cfa40fb6a2418ff180f4f71bbbe,
         type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 379703862210201499, guid: 5bbf2cfa40fb6a2418ff180f4f71bbbe,
         type: 3}

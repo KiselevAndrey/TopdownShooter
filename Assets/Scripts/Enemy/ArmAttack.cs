@@ -13,8 +13,6 @@ public class ArmAttack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision == _body) return;
-
         Health health = collision.GetComponent<Health>();
 
         if (health)

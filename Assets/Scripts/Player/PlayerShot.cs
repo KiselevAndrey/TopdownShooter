@@ -8,12 +8,14 @@ public class PlayerShot : MonoBehaviour
     [SerializeField] GameObject bulletPrefab;
 
     Animator _anim;
+    Player _player;
     float timeLastShot;
 
     #region Awake Start Update
     void Awake()
     {
         _anim = GetComponent<Animator>();
+        _player = GetComponent<Player>();
     }
 
     private void Start()
@@ -23,6 +25,8 @@ public class PlayerShot : MonoBehaviour
 
     void Update()
     {
+        if (_player.IsDead()) return;
+
         CheckShot();
     }
     #endregion
