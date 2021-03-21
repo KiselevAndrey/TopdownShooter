@@ -71,7 +71,6 @@ public class Enemy : MonoBehaviour
         Vector3 temp = transform.position;
         temp.z += 0.1f;
         transform.position = temp;
-        print(temp);
     }
     #endregion
 

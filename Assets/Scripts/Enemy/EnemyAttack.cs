@@ -10,6 +10,11 @@ public class EnemyAttack : MonoBehaviour
     public float minDistance;
     public float maxDistance;
 
+    [Header("Атака рукой")]
+    [SerializeField] GameObject armTrigger;
+    [SerializeField] ArmAttack arm;
+    [SerializeField] Collider2D selfBody;
+
     [HideInInspector] public bool isAttaking;
 
     Enemy _enemy;
@@ -25,6 +30,7 @@ public class EnemyAttack : MonoBehaviour
     private void Start()
     {
         timeLastShot = attackRate;
+        arm.Starting(selfBody, damage);
     }
 
     void Update()
@@ -51,13 +57,14 @@ public class EnemyAttack : MonoBehaviour
 
     void Attack()
     {
-        print("attack");
-        print(_enemy.direction.magnitude);
         _enemy.anim.SetTrigger(AnimParam.Attack);
         isAttaking = true;
         timeLastShot = 0;
     }
 
     public void EndAttack() => isAttaking = false;
+
+    public void ArmTriggerEnable() => armTrigger.SetActive(true);
+    public void ArmTriggerDisable() => armTrigger.SetActive(false);
     #endregion
 }
