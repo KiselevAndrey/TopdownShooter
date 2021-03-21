@@ -3,9 +3,20 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
+    [Header("Стартовые параметры")]
     [SerializeField, Min(0)] int startingHealth;
+
+    [Header("Видимость UI")]
+    [SerializeField] bool hideUI;
+    [SerializeField, Tooltip("Через сколько спрятать UI")] float visibleUISec;
+    [SerializeField] GameObject UIHealth;
+
+    [Header("UI elements")]
     [SerializeField] Slider slider;
+    [SerializeField] Image backgroundImage;
     [SerializeField] Image fillImage;
+
+    [Header("Цветовая дифференцияция")]
     [SerializeField] Color fullHealthColor = Color.green;
     [SerializeField] Color zeroHealthColor = Color.red;         
     
