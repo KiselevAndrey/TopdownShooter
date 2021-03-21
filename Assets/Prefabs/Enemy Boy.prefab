@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 7987931357234977598}
   - component: {fileID: 563947516137320590}
   - component: {fileID: 7817366761867581368}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: Enemy Boy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,8 +174,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 767fa49605b539c43b9658d46dd798ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shot: {fileID: 563947516137320590}
   walk: {fileID: 7987931357234977598}
+  shot: {fileID: 563947516137320590}
+  attack: {fileID: 0}
+  anim: {fileID: 0}
+  body: {fileID: 0}
+  direction: {x: 0, y: 0}
+  target: {fileID: 0}
 --- !u!114 &7987931357234977598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,9 +193,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec33dee4823368949a7df6cb7a0f3fce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  speed: 1
-  direction: {x: 0, y: 0}
+  maxSpeed: 0
+  maxTrackingDistance: 0
+  shotPriority: 0
 --- !u!114 &563947516137320590
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,11 +208,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24cb2bbc51448f446a9a8f0c6454f7ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRange: 12
+  shotRange: 0
   fireRate: 1
   gunPos: {fileID: 9201229557557807470}
   bulletPrefab: {fileID: 1800685372759179360, guid: 0f46c54a958b08f49a3930aeaa69f155,
     type: 3}
+  minDistance: 0
+  maxDistance: 0
 --- !u!114 &7817366761867581368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -234,7 +241,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9201229557557807470}
-  m_Layer: 10
+  m_Layer: 8
   m_Name: Gun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -266,6 +273,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 2996832268464200580, guid: d508eaf9199816d40bf09fd22f958b99,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 6187685807144208350, guid: d508eaf9199816d40bf09fd22f958b99,
         type: 3}
@@ -371,6 +383,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5074211896704972525, guid: d508eaf9199816d40bf09fd22f958b99,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6131691417723279126, guid: d508eaf9199816d40bf09fd22f958b99,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140481896686558372, guid: d508eaf9199816d40bf09fd22f958b99,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 7880570914690874315, guid: d508eaf9199816d40bf09fd22f958b99,
+        type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d508eaf9199816d40bf09fd22f958b99, type: 3}

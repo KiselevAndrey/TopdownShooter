@@ -69,28 +69,24 @@ public class Enemy : MonoBehaviour
 
         body.enabled = false;
         Vector3 temp = transform.position;
-        temp.y += 0.1f;
+        temp.z += 0.1f;
         transform.position = temp;
+        print(temp);
     }
     #endregion
 
     public void LoseTarget()
     {
-        print(direction.magnitude);
         target = null;
     }
 
     #region OnCollision
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        switch (collision.gameObject.tag)
-        {
-            case TagsNames.Bullet:
-                Bullet bull = collision.gameObject.GetComponent<Bullet>();
-                _health.Hit(bull.damage);
-                Destroy(bull.gameObject);
-                break;
-        }
+        //switch (collision.gameObject.tag)
+        //{
+
+        //}
     }
     #endregion
 

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3751084012656893290}
   - component: {fileID: 2483317076718913411}
   - component: {fileID: 6780371746781391}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0.3, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 2, y: 2}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &3751084012656893290
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 4645911177796934712}
   - component: {fileID: 7672865153504513342}
   - component: {fileID: 5640054054541772534}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 5753061224875030016}
   - component: {fileID: 8547047655379877683}
   - component: {fileID: 1705496423951540008}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,7 +256,7 @@ GameObject:
   - component: {fileID: 268478667885141058}
   - component: {fileID: 516362528692801906}
   - component: {fileID: 4107462809464896690}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: HealthSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -356,7 +356,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1596153723739656131}
-  m_Layer: 8
+  m_Layer: 5
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
