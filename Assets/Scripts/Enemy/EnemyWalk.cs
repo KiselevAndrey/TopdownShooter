@@ -47,13 +47,14 @@ public class EnemyWalk : MonoBehaviour
     {
         // Move
         float distance = _enemy.direction.magnitude;
-        print(distance);
         float minDistance = shotPriority ? _enemy.shot.minDistance : _enemy.attack.minDistance;
         float maxDistance = shotPriority ? _enemy.shot.maxDistance : _enemy.attack.maxDistance;
 
         if (_walk)
         {
-            _rb.velocity = _enemy.direction.normalized * maxSpeed;
+            if (_enemy.attack.isAttaking) _rb.velocity = Vector2.zero;
+            else _rb.velocity = _enemy.direction.normalized * maxSpeed;
+
             _walk = distance >= minDistance;
         }
         else
@@ -61,6 +62,10 @@ public class EnemyWalk : MonoBehaviour
             _rb.velocity = Vector2.zero;
             _walk = distance >= maxDistance;
         }
+
+        if(distance < minDistance)
+            _rb.velocity = _enemy.direction.normalized * -maxSpeed;
+
         _enemy.anim.SetFloat(AnimParam.Speed, _rb.velocity.magnitude);
 
 
@@ -72,6 +77,6 @@ public class EnemyWalk : MonoBehaviour
     public void DontMove()
     {
         _rb.velocity = Vector2.zero;
-        _rb.isKinematic = true;
+        _rb.bodyType = RigidbodyType2D.Static;
     }
 }

@@ -15,10 +15,15 @@ public class Enemy : MonoBehaviour
     [Header("Основные объекты")]
     public Animator anim;
 
+    [Header("Доп объекты")]
+    [SerializeField] CircleCollider2D body;
+
+
     [HideInInspector] public Vector2 direction;
     [HideInInspector] public Transform target;
 
     Health _health;
+    SpriteRenderer _spriteRenderer;
 
     bool _isDie;
 
@@ -27,6 +32,7 @@ public class Enemy : MonoBehaviour
     void Awake()
     {
         _health = GetComponent<Health>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
@@ -53,7 +59,17 @@ public class Enemy : MonoBehaviour
         if (_isDie) return;
         
         _isDie = true;
+
         walk.DontMove();
+
+        walk.enabled = false;
+        shot.enabled = false;
+        attack.enabled = false;
+
+        body.enabled = false;
+        Vector3 temp = transform.position;
+        temp.y += 0.1f;
+        transform.position = temp;
     }
 
 
@@ -78,6 +94,7 @@ public class Enemy : MonoBehaviour
         {
             case TagsNames.Player:
                 target = FindObjectOfType<Player>().GetComponent<Transform>();
+                direction = target.position - transform.position;
                 break;
         }
     }

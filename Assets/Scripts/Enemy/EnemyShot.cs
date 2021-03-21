@@ -9,8 +9,8 @@ public class EnemyShot : MonoBehaviour
     [SerializeField] GameObject bulletPrefab;
 
     [Header("Дистанции")]
-    public float maxDistance;
     public float minDistance;
+    public float maxDistance;
 
     Enemy _enemy;
 

@@ -18,7 +18,7 @@ public class PlayerShot : MonoBehaviour
 
     private void Start()
     {
-        timeLastShot = 0;
+        timeLastShot = fireRate;
     }
 
     void Update()

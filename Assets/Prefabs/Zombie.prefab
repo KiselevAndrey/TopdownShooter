@@ -178,6 +178,7 @@ MonoBehaviour:
   shot: {fileID: 6165173568235733455}
   attack: {fileID: 3516062195827970229}
   anim: {fileID: 2180828379325722562}
+  body: {fileID: 608705468575826305}
   direction: {x: 0, y: 0}
   target: {fileID: 0}
 --- !u!114 &1799303691392463973
@@ -207,10 +208,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9714c5b9f20bee4d9fa267c787a5852, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackRange: 2
   attackRate: 1
-  maxDistance: 3
   minDistance: 1
+  maxDistance: 2
+  isAttaking: 0
 --- !u!114 &6165173568235733455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,8 +228,8 @@ MonoBehaviour:
   fireRate: 0
   gunPos: {fileID: 0}
   bulletPrefab: {fileID: 0}
-  maxDistance: 9
   minDistance: 5
+  maxDistance: 9
 --- !u!114 &5571480760816440039
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,7 +317,7 @@ PrefabInstance:
     - target: {fileID: 6187685807144208350, guid: d508eaf9199816d40bf09fd22f958b99,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6187685807144208350, guid: d508eaf9199816d40bf09fd22f958b99,
         type: 3}

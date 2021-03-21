@@ -2,12 +2,15 @@
 
 public class EnemyAttack : MonoBehaviour
 {
-    [SerializeField] float attackRange;
+    [Header("Параметры атаки")]
+    [SerializeField, Min(0)] float damage;
     [SerializeField, Range(0, 2)] float attackRate;
 
     [Header("Дистанции")]
-    public float maxDistance;
     public float minDistance;
+    public float maxDistance;
+
+    [HideInInspector] public bool isAttaking;
 
     Enemy _enemy;
 
@@ -21,7 +24,7 @@ public class EnemyAttack : MonoBehaviour
 
     private void Start()
     {
-        timeLastShot = 0;
+        timeLastShot = attackRate;
     }
 
     void Update()
@@ -32,21 +35,29 @@ public class EnemyAttack : MonoBehaviour
     }
     #endregion
 
-    #region Shot
+    #region Attack
     void CheckAttack()
     {
         if (timeLastShot >= attackRate)
         {
-            if (_enemy.direction.magnitude <= attackRange)
-            {
-                _enemy.anim.SetTrigger(AnimParam.Shot);
-                timeLastShot = 0;
-            }
+            if (_enemy.direction.magnitude <= maxDistance)
+                Attack();
         }
         else
         {
             timeLastShot += Time.deltaTime;
         }
     }
+
+    void Attack()
+    {
+        print("attack");
+        print(_enemy.direction.magnitude);
+        _enemy.anim.SetTrigger(AnimParam.Attack);
+        isAttaking = true;
+        timeLastShot = 0;
+    }
+
+    public void EndAttack() => isAttaking = false;
     #endregion
 }
