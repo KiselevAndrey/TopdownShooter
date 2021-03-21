@@ -52,6 +52,7 @@ public class Enemy : MonoBehaviour
     }
     #endregion
 
+    #region Die
     public bool IsDead() => _health.IsDead();
     
     void Die()
@@ -71,7 +72,13 @@ public class Enemy : MonoBehaviour
         temp.y += 0.1f;
         transform.position = temp;
     }
+    #endregion
 
+    public void LoseTarget()
+    {
+        print(direction.magnitude);
+        target = null;
+    }
 
     #region OnCollision
     private void OnCollisionEnter2D(Collision2D collision)

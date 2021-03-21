@@ -17,7 +17,6 @@ public class EnemyWalk : MonoBehaviour
     Rigidbody2D _rb;
     Enemy _enemy;
 
-    float _speed;
     bool _walk;
 
     #region Awake Start Update
@@ -66,8 +65,13 @@ public class EnemyWalk : MonoBehaviour
         if(distance < minDistance)
             _rb.velocity = _enemy.direction.normalized * -maxSpeed;
 
-        _enemy.anim.SetFloat(AnimParam.Speed, _rb.velocity.magnitude);
+        if (distance > maxTrackingDistance)
+        {
+            _enemy.LoseTarget();
+            _rb.velocity = Vector2.zero;
+        }
 
+        _enemy.anim.SetFloat(AnimParam.Speed, _rb.velocity.magnitude);
 
         // rotation
         transform.up = _enemy.direction;

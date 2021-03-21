@@ -446,6 +446,11 @@ PrefabInstance:
       propertyPath: fireRate
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 8702202125423338022, guid: bea8dd8cee9e08a4f934480caa640e99,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bea8dd8cee9e08a4f934480caa640e99, type: 3}
 --- !u!1 &1671127200
