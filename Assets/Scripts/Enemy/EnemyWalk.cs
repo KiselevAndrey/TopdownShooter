@@ -6,6 +6,7 @@
 public class EnemyWalk : MonoBehaviour
 {
     [Header("Скорости")]
+    [SerializeField, Range(0, 10)] float minSpeed;
     [SerializeField, Range(0, 10)] float maxSpeed;
 
     [Header("Дистанции")]
@@ -18,6 +19,7 @@ public class EnemyWalk : MonoBehaviour
     Enemy _enemy;
 
     bool _walk;
+    float _maxSpeed;
 
     #region Awake Start Update
     void Awake()
@@ -28,7 +30,7 @@ public class EnemyWalk : MonoBehaviour
 
     private void Start()
     {
-        
+        _maxSpeed = Random.Range(minSpeed, maxSpeed);
     }
 
     private void FixedUpdate()
@@ -52,7 +54,7 @@ public class EnemyWalk : MonoBehaviour
         if (_walk)
         {
             if (_enemy.attack.isAttaking) _rb.velocity = Vector2.zero;
-            else _rb.velocity = _enemy.direction.normalized * maxSpeed;
+            else _rb.velocity = _enemy.direction.normalized * _maxSpeed;
 
             _walk = distance >= minDistance;
         }
@@ -63,7 +65,7 @@ public class EnemyWalk : MonoBehaviour
         }
 
         if(distance < minDistance)
-            _rb.velocity = _enemy.direction.normalized * -maxSpeed;
+            _rb.velocity = _enemy.direction.normalized * -_maxSpeed;
 
         if (distance > maxTrackingDistance)
         {

@@ -2,11 +2,15 @@
 
 public class EnemyShot : MonoBehaviour
 {
-    [SerializeField] float shotRange;
-    [SerializeField, Range(0, 2)] float fireRate;
+    [Header("Параметры атаки")]
+    [SerializeField, Min(0)] float minRange;
+    [SerializeField, Min(0)] float maxRange;
+    [SerializeField, Range(0, 2)] float minFireRate;
+    [SerializeField, Range(0, 2)] float maxFireRate;
 
-    [SerializeField] Transform gunPos;
-    [SerializeField] GameObject bulletPrefab;
+    [Header("Плевок")]
+    [SerializeField] Transform gobPos;
+    [SerializeField] GameObject spittlePrefab;
 
     [Header("Дистанции")]
     public float minDistance;
@@ -15,6 +19,8 @@ public class EnemyShot : MonoBehaviour
     Enemy _enemy;
 
     float timeLastShot;
+    float _shotRange;
+    float _fireRate;
 
     #region Awake Start Update
     void Awake()
@@ -24,6 +30,9 @@ public class EnemyShot : MonoBehaviour
 
     private void Start()
     {
+        _shotRange = Random.Range(minRange, maxRange);
+        _fireRate = Random.Range(minFireRate, maxFireRate);
+
         timeLastShot = 0;
     }
 
@@ -38,9 +47,9 @@ public class EnemyShot : MonoBehaviour
     #region Shot
     void CheckShot()
     {
-        if (timeLastShot >= fireRate)
+        if (timeLastShot >= _fireRate)
         {
-            if (_enemy.direction.magnitude <= shotRange)
+            if (_enemy.direction.magnitude <= _shotRange)
             {
                 _enemy.anim.SetTrigger(AnimParam.Shot);
                 timeLastShot = 0;
@@ -52,6 +61,6 @@ public class EnemyShot : MonoBehaviour
         }
     }
 
-    public void Shot() => Instantiate(bulletPrefab, gunPos.transform.position, gunPos.transform.rotation);
+    public void Shot() => Instantiate(spittlePrefab, gobPos.transform.position, gobPos.transform.rotation);
     #endregion
 }

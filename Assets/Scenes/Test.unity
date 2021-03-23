@@ -163,9 +163,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4d948c0d3fe0e541ae97a34c673192f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 4957931446536731981, guid: 13692bee33df4a142a2b6af402a28dcb, type: 3}
+  prefabs:
+  - {fileID: 4957931446536731981, guid: dad941636b953464e83d8e78e4a057fe, type: 3}
+  - {fileID: 4957931446536731981, guid: 13692bee33df4a142a2b6af402a28dcb, type: 3}
   count: 1000
-  range: 0
+  range: 20
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -361,7 +363,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &947635559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -374,7 +376,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4d948c0d3fe0e541ae97a34c673192f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prefab: {fileID: 379703862210201498, guid: 5bbf2cfa40fb6a2418ff180f4f71bbbe, type: 3}
+  prefabs: []
   count: 100
   range: 60
 --- !u!4 &947635560
@@ -458,17 +460,7 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8932348813391352435, guid: bea8dd8cee9e08a4f934480caa640e99,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8932348813391352435, guid: bea8dd8cee9e08a4f934480caa640e99,
-        type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8932348813391352435, guid: bea8dd8cee9e08a4f934480caa640e99,
+    - target: {fileID: 4431148011590397544, guid: bea8dd8cee9e08a4f934480caa640e99,
         type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -477,46 +469,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4431148011590397544, guid: bea8dd8cee9e08a4f934480caa640e99,
-        type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4431148011590397544, guid: bea8dd8cee9e08a4f934480caa640e99,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7278732781476988736, guid: bea8dd8cee9e08a4f934480caa640e99,
-        type: 3}
-      propertyPath: m_FillAmount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4620564190669898736, guid: bea8dd8cee9e08a4f934480caa640e99,
-        type: 3}
-      propertyPath: startingHealth
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 8702202125423338024, guid: bea8dd8cee9e08a4f934480caa640e99,
-        type: 3}
-      propertyPath: speed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8702202125423338029, guid: bea8dd8cee9e08a4f934480caa640e99,
-        type: 3}
-      propertyPath: fireRate
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8702202125423338022, guid: bea8dd8cee9e08a4f934480caa640e99,
-        type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8702202125423338022, guid: bea8dd8cee9e08a4f934480caa640e99,
-        type: 3}
-      propertyPath: m_LinearDrag
-      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bea8dd8cee9e08a4f934480caa640e99, type: 3}
