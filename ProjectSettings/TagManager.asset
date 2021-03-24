@@ -53,3 +53,6 @@ TagManager:
   - name: Humanoid
     uniqueID: 3038230927
     locked: 0
+  - name: Roof
+    uniqueID: 3090063949
+    locked: 0
