@@ -9,7 +9,6 @@ public class Health : MonoBehaviour
 
     [Header("Видимость UI")]
     [SerializeField] bool hideUI;
-    [SerializeField] bool hideIfFull;
     [SerializeField, Tooltip("Через сколько спрятать UI")] float visibleUISec;
     [SerializeField] GameObject UIHealth;
 

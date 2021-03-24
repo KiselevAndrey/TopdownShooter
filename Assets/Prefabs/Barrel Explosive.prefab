@@ -137,7 +137,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 100
   m_LinearDrag: 20
-  m_AngularDrag: 0.05
+  m_AngularDrag: 20
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 10
+  maxPlusPercentLife: 0
   hideUI: 1
   hideIfFull: 0
   visibleUISec: 3
@@ -9832,6 +9833,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 6131691417723279126, guid: d508eaf9199816d40bf09fd22f958b99,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 6187685807144208350, guid: d508eaf9199816d40bf09fd22f958b99,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -9937,27 +9943,12 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 5074211896704972525, guid: d508eaf9199816d40bf09fd22f958b99,
-        type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 5753061224875030016, guid: d508eaf9199816d40bf09fd22f958b99,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5753061224875030016, guid: d508eaf9199816d40bf09fd22f958b99,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6131691417723279126, guid: d508eaf9199816d40bf09fd22f958b99,
-        type: 3}
-      propertyPath: m_Layer
-      value: 12
-      objectReference: {fileID: 0}
     - target: {fileID: 4140481896686558372, guid: d508eaf9199816d40bf09fd22f958b99,
+        type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 5074211896704972525, guid: d508eaf9199816d40bf09fd22f958b99,
         type: 3}
       propertyPath: m_Layer
       value: 12
@@ -9966,11 +9957,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 5640054054541772534, guid: d508eaf9199816d40bf09fd22f958b99,
-        type: 3}
-      propertyPath: m_Color.a
-      value: 0.15686275
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d508eaf9199816d40bf09fd22f958b99, type: 3}

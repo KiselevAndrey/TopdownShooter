@@ -77,10 +77,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1256736369
+  m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: da586d58d1b28774bbb44d722e071dee, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f2f445017efca644fa0d80c59be5886f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -255,7 +255,6 @@ MonoBehaviour:
   startingHealth: 10
   maxPlusPercentLife: 300
   hideUI: 1
-  hideIfFull: 1
   visibleUISec: 3
   UIHealth: {fileID: 8908278024195536762}
   slider: {fileID: 2995693692732076318}
@@ -335,7 +334,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9530dc86dc577274fb33413831309bf7, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.50980395}
+  m_Color: {r: 0.17377181, g: 0.5188679, b: 0.26380476, a: 0.50980395}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
