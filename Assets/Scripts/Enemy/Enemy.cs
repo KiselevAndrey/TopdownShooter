@@ -1,12 +1,11 @@
 ﻿using UnityEngine;
 
-// если есть таргет, то идти к нему
-// Если дошел до мин радиаса атаки, то остановиться
-// если цель ушла из макс радиуса атаки, то идти за целью
-// если таргет далеко, то сделать ссылку на потерю таргета
-
+public enum States { Idle, Patrol, Chasing, Attack, Shot}
 public class Enemy : MonoBehaviour
 {
+    [Header("Описание")]
+    [SerializeField, Multiline(3)] string descriptions;
+
     [Header("Скрипты")]
     public EnemyWalk walk;
     public EnemyShot shot;
@@ -17,13 +16,17 @@ public class Enemy : MonoBehaviour
 
     [Header("Доп объекты")]
     [SerializeField] CircleCollider2D body;
+    [SerializeField] GameObject senceOrgans;
+
+    [Header("Доп переменные")]
+    [SerializeField] bool canPatrol;
 
 
     [HideInInspector] public Vector2 direction;
     [HideInInspector] public Transform target;
+    [HideInInspector] public States currentState;
 
     Health _health;
-    SpriteRenderer _spriteRenderer;
 
     bool _isDie;
 
@@ -32,11 +35,11 @@ public class Enemy : MonoBehaviour
     void Awake()
     {
         _health = GetComponent<Health>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
     {
+        currentState = canPatrol ? States.Patrol : States.Idle;
     }
 
     void Update()
@@ -74,10 +77,14 @@ public class Enemy : MonoBehaviour
     void DestroyObject() => Destroy(gameObject);
     #endregion
 
+    #region Доп функции 
+    #region LoseTarget
     public void LoseTarget()
     {
         target = null;
+        senceOrgans.SetActive(true);
     }
+    #endregion
 
     void EnableObject(bool value)
     {
@@ -86,38 +93,38 @@ public class Enemy : MonoBehaviour
         attack.enabled = value;
     }
 
-    #region OnCollision
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        //switch (collision.gameObject.tag)
-        //{
-
-        //}
-    }
-    #endregion
-
-    #region OnTrigger
-    private void OnTriggerEnter2D(Collider2D collision)
+    #region Обработка триггера
+    public void TriggerTreat(Collider2D collision)
     {
         switch (collision.gameObject.tag)
         {
             case TagsNames.Player:
                 target = FindObjectOfType<Player>().GetComponent<Transform>();
                 direction = target.position - transform.position;
+                senceOrgans.SetActive(false);
+                break;
+
+            case TagsNames.Bullet:
+                transform.up = Vector2.Lerp(transform.up, collision.transform.position, 1);
                 break;
         }
     }
     #endregion
+    #endregion
 
-    #region OnBecame
-    private void OnBecameInvisible()
+    #region OnCollision
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        EnableObject(false);
-    }
-
-    private void OnBecameVisible()
-    {
-        EnableObject(true);
+        switch (collision.gameObject.tag)
+        {
+            case TagsNames.Bullet:
+                if (!target)
+                {
+                    Vector2 dir = collision.contacts[0].point - (Vector2)transform.position;
+                    transform.up = dir;
+                }
+                break;
+        }
     }
     #endregion
 }

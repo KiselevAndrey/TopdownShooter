@@ -5,7 +5,7 @@ public class Health : MonoBehaviour
 {
     [Header("Стартовые параметры")]
     [SerializeField, Min(0)] float startingHealth;
-    [SerializeField, Min(0)] int maxPlusPercentLife; 
+    [SerializeField, Min(0)] int possibleAdditionalHealth; 
 
     [Header("Видимость UI")]
     [SerializeField] bool hideUI;
@@ -41,8 +41,7 @@ public class Health : MonoBehaviour
 
     private void Start()
     {
-        startingHealth += startingHealth * Random.Range(0, maxPlusPercentLife) / 100;
-        //startingHealth += startingHealth * Random.value * maxPlusPercentLife;
+        startingHealth += Random.Range(0, possibleAdditionalHealth);
 
         _currentHealth = startingHealth;
         slider.maxValue = startingHealth;

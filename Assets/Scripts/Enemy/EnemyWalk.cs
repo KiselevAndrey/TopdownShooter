@@ -20,6 +20,8 @@ public class EnemyWalk : MonoBehaviour
 
     bool _walk;
     float _maxSpeed;
+    float _minDistance;
+    float _maxDistance;
 
     #region Awake Start Update
     void Awake()
@@ -31,6 +33,9 @@ public class EnemyWalk : MonoBehaviour
     private void Start()
     {
         _maxSpeed = Random.Range(minSpeed, maxSpeed);
+
+        _minDistance = shotPriority ? _enemy.shot.minDistance : _enemy.attack.minDistance;
+        _maxDistance = shotPriority ? _enemy.shot.maxDistance : _enemy.attack.maxDistance;
     }
 
     private void FixedUpdate()
@@ -46,25 +51,44 @@ public class EnemyWalk : MonoBehaviour
     #region Folloving
     void Folloving()
     {
-        // Move
         float distance = _enemy.direction.magnitude;
-        float minDistance = shotPriority ? _enemy.shot.minDistance : _enemy.attack.minDistance;
-        float maxDistance = shotPriority ? _enemy.shot.maxDistance : _enemy.attack.maxDistance;
+
+        _rb.velocity = distance > _minDistance ? _enemy.direction.normalized * _maxSpeed : Vector2.zero;
+
+        if (distance < _minDistance)
+            _rb.velocity = _enemy.direction.normalized * -_maxSpeed;
+
+        if (distance > maxTrackingDistance)
+        {
+            _enemy.LoseTarget();
+            _rb.velocity = Vector2.zero;
+        }
+
+        _enemy.anim.SetFloat(AnimParam.Speed, _rb.velocity.magnitude);
+
+        // rotation
+        transform.up = _enemy.direction;
+    }
+
+    void FollovingOld()
+    {
+        // move
+        float distance = _enemy.direction.magnitude;
 
         if (_walk)
         {
             if (_enemy.attack.isAttaking) _rb.velocity = Vector2.zero;
             else _rb.velocity = _enemy.direction.normalized * _maxSpeed;
 
-            _walk = distance >= minDistance;
+            _walk = distance >= _minDistance;
         }
         else
         {
             _rb.velocity = Vector2.zero;
-            _walk = distance >= maxDistance;
+            _walk = distance >= _maxDistance;
         }
 
-        if(distance < minDistance)
+        if(distance < _minDistance)
             _rb.velocity = _enemy.direction.normalized * -_maxSpeed;
 
         if (distance > maxTrackingDistance)

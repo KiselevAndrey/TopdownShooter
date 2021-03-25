@@ -7,6 +7,7 @@ public class PlayerMove : MonoBehaviour
     Player _player;
     Rigidbody2D _rb;
     Animator _anim;
+    Camera _cameraMain;
 
     #region Awake Start Update
     void Awake()
@@ -14,6 +15,11 @@ public class PlayerMove : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
         _player = GetComponent<Player>();
+    }
+
+    private void Start()
+    {
+        _cameraMain = Camera.main;
     }
 
     private void FixedUpdate()
@@ -37,7 +43,7 @@ public class PlayerMove : MonoBehaviour
 
     void Rotate()
     {
-        Vector2 mouseWorldPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector2 mouseWorldPosition = _cameraMain.ScreenToWorldPoint(Input.mousePosition);
         Vector2 direction = mouseWorldPosition - (Vector2)transform.position;
 
         transform.up = direction;

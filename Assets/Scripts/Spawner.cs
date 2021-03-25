@@ -22,7 +22,7 @@ public class Spawner : MonoBehaviour
             instatiatePos.y += (Random.value - 0.5f) * range;
 
             int j = Random.Range(0, prefabs.Count);
-            Instantiate(prefabs[j], instatiatePos, Quaternion.Euler(0, 0, Random.value * 360));
+            Instantiate(prefabs[j], instatiatePos, Quaternion.Euler(0, 0, Random.value * 360), transform);
             yield return new WaitForSeconds(0.5f);
         }
     }
