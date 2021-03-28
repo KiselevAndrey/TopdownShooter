@@ -46,60 +46,60 @@ public class EnemyWalk : MonoBehaviour
     }
     #endregion
 
+    #region Обработка bool
     public bool CanUpdate() => !_enemy.IsDead() && _enemy.target;
+    public bool CanGetCloser() => _enemy.distance > _minDistance;
+    #endregion
 
     #region Folloving
-    void Folloving()
+    public void Folloving() => FollovingOld();
+
+    void FollovingNew()
     {
-        float distance = _enemy.direction.magnitude;
+        _rb.velocity = CanGetCloser() ? _enemy.direction.normalized * _maxSpeed : Vector2.zero;
 
-        _rb.velocity = distance > _minDistance ? _enemy.direction.normalized * _maxSpeed : Vector2.zero;
-
-        if (distance < _minDistance)
+        if (_enemy.distance < _minDistance)
             _rb.velocity = _enemy.direction.normalized * -_maxSpeed;
 
-        if (distance > maxTrackingDistance)
+        if (_enemy.distance > maxTrackingDistance)
         {
             _enemy.LoseTarget();
             _rb.velocity = Vector2.zero;
         }
 
         _enemy.anim.SetFloat(AnimParam.Speed, _rb.velocity.magnitude);
-
-        // rotation
-        transform.up = _enemy.direction;
     }
 
     void FollovingOld()
     {
         // move
-        float distance = _enemy.direction.magnitude;
-
         if (_walk)
         {
             if (_enemy.attack.isAttaking) _rb.velocity = Vector2.zero;
             else _rb.velocity = _enemy.direction.normalized * _maxSpeed;
 
-            _walk = distance >= _minDistance;
+            _walk = CanGetCloser();
         }
         else
         {
             _rb.velocity = Vector2.zero;
-            _walk = distance >= _maxDistance;
+            _walk = _enemy.distance >= _maxDistance;
         }
 
-        if(distance < _minDistance)
+        if(_enemy.distance < _minDistance)
             _rb.velocity = _enemy.direction.normalized * -_maxSpeed;
 
-        if (distance > maxTrackingDistance)
+        if (_enemy.distance > maxTrackingDistance)
         {
             _enemy.LoseTarget();
             _rb.velocity = Vector2.zero;
         }
 
         _enemy.anim.SetFloat(AnimParam.Speed, _rb.velocity.magnitude);
+    }
 
-        // rotation
+    public void Rotation()
+    {
         transform.up = _enemy.direction;
     }
     #endregion

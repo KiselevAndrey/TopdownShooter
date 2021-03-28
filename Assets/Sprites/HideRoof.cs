@@ -6,7 +6,7 @@ public class HideRoof : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == TagsNames.Player)
+        if(collision.gameObject.CompareTag(TagsNames.Player))
         {
             roof.SetActive(false);
         }
@@ -14,7 +14,7 @@ public class HideRoof : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == TagsNames.Player)
+        if (collision.gameObject.CompareTag(TagsNames.Player))
         {
             roof.SetActive(true);
         }

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public enum States { Idle, Patrol, Chasing, Attack, Shot}
+public enum States { Guard, Patrol, Walk, Attack, Shot}
 public class Enemy : MonoBehaviour
 {
     [Header("Описание")]
@@ -22,9 +22,11 @@ public class Enemy : MonoBehaviour
     [SerializeField] bool canPatrol;
 
 
+    [HideInInspector] public States currentState;
     [HideInInspector] public Vector2 direction;
     [HideInInspector] public Transform target;
-    [HideInInspector] public States currentState;
+    [HideInInspector] public float distance;
+    [HideInInspector] public bool isActive;
 
     Health _health;
 
@@ -39,7 +41,8 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        currentState = canPatrol ? States.Patrol : States.Idle;
+        currentState = canPatrol ? States.Patrol : States.Guard;
+        EnableObject(false);
     }
 
     void Update()
@@ -49,9 +52,53 @@ public class Enemy : MonoBehaviour
             Die();
             return;
         }
+
+
         if (!target) return;
 
+
         direction = target.position - transform.position;
+        distance = direction.magnitude;
+        //CheckStatus();
+
+        // всегда поворачиваешься к цели, если она есть
+        walk.Rotation();
+    }
+    #endregion
+
+    #region States
+    void CheckStatus()
+    {
+
+        switch (currentState)
+        {
+            case States.Guard:
+                break;
+            case States.Patrol:
+                break;
+            case States.Walk:
+                walk.Folloving();
+                break;
+            case States.Attack:
+                break;
+            case States.Shot:
+                break;
+            default:
+                break;
+        }
+    }
+    #endregion
+
+    #region видимость игрока райкастом
+    bool CanSeePlayer()
+    {
+        // пока просто кидаю райкаст в таргет
+        RaycastHit2D hit2D = Physics2D.Raycast(transform.position, direction, distance, 8);// LayerMask.GetMask(LayersNames.Human));
+        Debug.DrawRay(transform.position, direction);
+        print(hit2D.collider);
+        bool temp = hit2D.collider.gameObject.CompareTag(TagsNames.Player);
+        print(hit2D.collider);
+        return temp;
     }
     #endregion
 
@@ -77,7 +124,6 @@ public class Enemy : MonoBehaviour
     void DestroyObject() => Destroy(gameObject);
     #endregion
 
-    #region Доп функции 
     #region LoseTarget
     public void LoseTarget()
     {
@@ -86,22 +132,24 @@ public class Enemy : MonoBehaviour
     }
     #endregion
 
+    #region Активность бота
     void EnableObject(bool value)
     {
+        isActive = value;
         walk.enabled = value;
         shot.enabled = value;
         attack.enabled = value;
+        senceOrgans.SetActive(value);
     }
+    #endregion
 
-    #region Обработка триггера
+    #region Обработка триггера органов чувств. Пока одна на всех
     public void TriggerTreat(Collider2D collision)
     {
         switch (collision.gameObject.tag)
         {
             case TagsNames.Player:
-                target = FindObjectOfType<Player>().GetComponent<Transform>();
-                direction = target.position - transform.position;
-                senceOrgans.SetActive(false);
+                FindPlayer(collision);
                 break;
 
             case TagsNames.Bullet:
@@ -109,7 +157,22 @@ public class Enemy : MonoBehaviour
                 break;
         }
     }
-    #endregion
+
+    void FindPlayer(Collider2D collision)
+    {
+        target = collision.GetComponent<Transform>();
+        direction = target.position - transform.position;
+        senceOrgans.SetActive(false);
+
+        // не работает, устал исправлять
+        //if (CanSeePlayer())
+        //{
+        //    print(direction);
+        //    Debug.DrawRay(transform.position, direction);
+        //    senceOrgans.SetActive(false);
+        //}
+        //else target = null;
+    }
     #endregion
 
     #region OnCollision
@@ -125,6 +188,19 @@ public class Enemy : MonoBehaviour
                 }
                 break;
         }
+    }
+    #endregion
+
+
+    #region OnBecame Visible/Invisible
+    private void OnBecameVisible()
+    {
+        EnableObject(true);
+    }
+
+    private void OnBecameInvisible()
+    {
+        EnableObject(false);
     }
     #endregion
 }

@@ -28,3 +28,8 @@ public static class AnimParam
     public static string Shot = "Shot";
     public static string Dead = "Dead";
 }
+
+public static class LayersNames
+{
+    public static string Human = "Human";
+}
