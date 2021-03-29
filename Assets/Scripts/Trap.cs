@@ -12,7 +12,7 @@ public class Trap : MonoBehaviour
         print(collision.gameObject.layer);
         print(layer.value);
         print((int)layer == collision.gameObject.layer);
-        if (collision.gameObject.layer != (int)layer) return;
+        if (collision.gameObject.layer != Mathf.Log(layer, 2)) return;
 
         switch (type)
         {

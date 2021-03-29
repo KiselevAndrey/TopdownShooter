@@ -84,7 +84,11 @@ public class Health : MonoBehaviour
             _currentHealth = 0;
             SetActiveUI(false);
             _isDead = true;
-            _anim.SetBool(AnimParam.Dead, true);
+
+            if (_anim)
+                _anim.SetBool(AnimParam.Dead, true);
+            else
+                Destroy(gameObject);
         }
 
         SetHealthUI();

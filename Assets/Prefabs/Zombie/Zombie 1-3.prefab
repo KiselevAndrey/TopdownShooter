@@ -12,6 +12,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Zombie 1-3
       objectReference: {fileID: 0}
+    - target: {fileID: 5571480760816440039, guid: a7903f40dc0530e4b8b5469dbe071f7e,
+        type: 3}
+      propertyPath: startingHealth
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5571480760816440039, guid: a7903f40dc0530e4b8b5469dbe071f7e,
+        type: 3}
+      propertyPath: possibleAdditionalHealth
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 4957931446536731980, guid: a7903f40dc0530e4b8b5469dbe071f7e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -67,23 +77,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1682761598958480609, guid: a7903f40dc0530e4b8b5469dbe071f7e,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: eb17c3d37e1564b4e95da1fdc81b6496,
-        type: 3}
-    - target: {fileID: 1682761598958480609, guid: a7903f40dc0530e4b8b5469dbe071f7e,
-        type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2180828379325722562, guid: a7903f40dc0530e4b8b5469dbe071f7e,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 22100000, guid: 7a884deee2f6fe246a94aa2f5343f693,
-        type: 2}
     - target: {fileID: 8457369024374193100, guid: a7903f40dc0530e4b8b5469dbe071f7e,
         type: 3}
       propertyPath: descriptions
@@ -95,6 +88,12 @@ PrefabInstance:
       propertyPath: canPatrol
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2180828379325722562, guid: a7903f40dc0530e4b8b5469dbe071f7e,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 7a884deee2f6fe246a94aa2f5343f693,
+        type: 2}
     - target: {fileID: 1799303691392463973, guid: a7903f40dc0530e4b8b5469dbe071f7e,
         type: 3}
       propertyPath: minSpeed
@@ -104,6 +103,17 @@ PrefabInstance:
         type: 3}
       propertyPath: maxSpeed
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1682761598958480609, guid: a7903f40dc0530e4b8b5469dbe071f7e,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: eb17c3d37e1564b4e95da1fdc81b6496,
+        type: 3}
+    - target: {fileID: 1682761598958480609, guid: a7903f40dc0530e4b8b5469dbe071f7e,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3516062195827970229, guid: a7903f40dc0530e4b8b5469dbe071f7e,
         type: 3}
@@ -125,31 +135,6 @@ PrefabInstance:
       propertyPath: maxDamage
       value: 10
       objectReference: {fileID: 0}
-    - target: {fileID: 5571480760816440039, guid: a7903f40dc0530e4b8b5469dbe071f7e,
-        type: 3}
-      propertyPath: startingHealth
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5571480760816440039, guid: a7903f40dc0530e4b8b5469dbe071f7e,
-        type: 3}
-      propertyPath: possibleAdditionalHealth
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 6036337124752074075, guid: a7903f40dc0530e4b8b5469dbe071f7e,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7020638765846435436, guid: a7903f40dc0530e4b8b5469dbe071f7e,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7020638765846435436, guid: a7903f40dc0530e4b8b5469dbe071f7e,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6518188397003107708, guid: a7903f40dc0530e4b8b5469dbe071f7e,
         type: 3}
       propertyPath: m_Color.r
@@ -164,6 +149,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.b
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6036337124752074075, guid: a7903f40dc0530e4b8b5469dbe071f7e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7020638765846435436, guid: a7903f40dc0530e4b8b5469dbe071f7e,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7020638765846435436, guid: a7903f40dc0530e4b8b5469dbe071f7e,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7903f40dc0530e4b8b5469dbe071f7e, type: 3}

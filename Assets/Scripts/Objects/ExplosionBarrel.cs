@@ -31,17 +31,15 @@ public class ExplosionBarrel : MonoBehaviour
 
             Rigidbody2D targetRigidbody = colliders[i].GetComponent<Rigidbody2D>();
 
-            if (!targetRigidbody)
-                continue;
+            if (targetRigidbody)
+                AddExplosionForce(targetRigidbody, explosionForce, transform.position, explosionRadius);
 
-            AddExplosionForce(targetRigidbody, explosionForce, transform.position, explosionRadius);
-
-            Health targetHealth = targetRigidbody.GetComponent<Health>();
+            Health targetHealth = colliders[i].GetComponent<Health>();
 
             if (!targetHealth)
                 continue;
 
-            float damage = CalculateDamage(targetRigidbody.position);
+            float damage = CalculateDamage(colliders[i].transform.position);
             targetHealth.Hit(damage);
         }
 

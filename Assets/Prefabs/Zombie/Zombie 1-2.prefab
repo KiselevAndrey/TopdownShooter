@@ -12,6 +12,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Zombie 1-2
       objectReference: {fileID: 0}
+    - target: {fileID: 5571480760816440039, guid: a7903f40dc0530e4b8b5469dbe071f7e,
+        type: 3}
+      propertyPath: possibleAdditionalHealth
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4957931446536731980, guid: a7903f40dc0530e4b8b5469dbe071f7e,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -67,6 +72,28 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8457369024374193100, guid: a7903f40dc0530e4b8b5469dbe071f7e,
+        type: 3}
+      propertyPath: descriptions
+      value: "\u0411\u044B\u0441\u0442\u0440\u044B\u0439 \u0438 \u0441\u043B\u0430\u0431\u044B\u0439\n\u0425\u043B\u0438\u043F\u043A\u0438\u0439\n\u041D\u0435
+        \u043F\u043B\u044E\u0435\u0442\u0441\u044F, \u043D\u0435 \u043F\u0430\u0442\u0440\u0443\u043B\u0438\u0440\u0443\u0435\u0442"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2180828379325722562, guid: a7903f40dc0530e4b8b5469dbe071f7e,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: a255579e4b4610d43bfcc75872f08a68,
+        type: 2}
+    - target: {fileID: 1799303691392463973, guid: a7903f40dc0530e4b8b5469dbe071f7e,
+        type: 3}
+      propertyPath: minSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1799303691392463973, guid: a7903f40dc0530e4b8b5469dbe071f7e,
+        type: 3}
+      propertyPath: maxSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 1682761598958480609, guid: a7903f40dc0530e4b8b5469dbe071f7e,
         type: 3}
       propertyPath: m_Sprite
@@ -77,28 +104,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2180828379325722562, guid: a7903f40dc0530e4b8b5469dbe071f7e,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 22100000, guid: a255579e4b4610d43bfcc75872f08a68,
-        type: 2}
-    - target: {fileID: 8457369024374193100, guid: a7903f40dc0530e4b8b5469dbe071f7e,
-        type: 3}
-      propertyPath: descriptions
-      value: "\u0411\u044B\u0441\u0442\u0440\u044B\u0439 \u0438 \u0441\u043B\u0430\u0431\u044B\u0439\n\u0425\u043B\u0438\u043F\u043A\u0438\u0439\n\u041D\u0435
-        \u043F\u043B\u044E\u0435\u0442\u0441\u044F, \u043D\u0435 \u043F\u0430\u0442\u0440\u0443\u043B\u0438\u0440\u0443\u0435\u0442"
-      objectReference: {fileID: 0}
-    - target: {fileID: 1799303691392463973, guid: a7903f40dc0530e4b8b5469dbe071f7e,
-        type: 3}
-      propertyPath: minSpeed
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1799303691392463973, guid: a7903f40dc0530e4b8b5469dbe071f7e,
-        type: 3}
-      propertyPath: maxSpeed
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3516062195827970229, guid: a7903f40dc0530e4b8b5469dbe071f7e,
         type: 3}
@@ -115,26 +120,6 @@ PrefabInstance:
       propertyPath: minAttackRate
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 5571480760816440039, guid: a7903f40dc0530e4b8b5469dbe071f7e,
-        type: 3}
-      propertyPath: possibleAdditionalHealth
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 6036337124752074075, guid: a7903f40dc0530e4b8b5469dbe071f7e,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7020638765846435436, guid: a7903f40dc0530e4b8b5469dbe071f7e,
-        type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7020638765846435436, guid: a7903f40dc0530e4b8b5469dbe071f7e,
-        type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6518188397003107708, guid: a7903f40dc0530e4b8b5469dbe071f7e,
         type: 3}
       propertyPath: m_Color.r
@@ -149,6 +134,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.b
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6036337124752074075, guid: a7903f40dc0530e4b8b5469dbe071f7e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7020638765846435436, guid: a7903f40dc0530e4b8b5469dbe071f7e,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7020638765846435436, guid: a7903f40dc0530e4b8b5469dbe071f7e,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7903f40dc0530e4b8b5469dbe071f7e, type: 3}
