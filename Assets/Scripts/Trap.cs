@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-enum TrapType { OpenDoor }
+enum TrapType { OpenDoor, Awake }
 
 public class Trap : MonoBehaviour
 {
@@ -9,16 +9,23 @@ public class Trap : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        print(collision.gameObject.layer);
-        print(layer.value);
-        print((int)layer == collision.gameObject.layer);
         if (collision.gameObject.layer != Mathf.Log(layer, 2)) return;
 
         switch (type)
         {
             case TrapType.OpenDoor:
-                Destroy(gameObject);
+                
+                break;
+
+            case TrapType.Awake:
+                foreach(Transform child in transform)
+                {
+                    child.gameObject.SetActive(true);
+                    child.parent = transform.parent;
+                }
                 break;
         }
+
+        Destroy(gameObject);
     }
 }

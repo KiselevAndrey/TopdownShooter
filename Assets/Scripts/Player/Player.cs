@@ -6,6 +6,9 @@ public class Player : MonoBehaviour
     PlayerMove move;
     Health health;
 
+    [Header("Доп объекты")]
+    public AudioSource audioSource;
+
     #region Awake Start Update
     void Awake()
     {

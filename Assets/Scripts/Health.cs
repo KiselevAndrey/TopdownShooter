@@ -19,9 +19,13 @@ public class Health : MonoBehaviour
 
     [Header("Цветовая дифференцияция")]
     [SerializeField] Color fullHealthColor = Color.green;
-    [SerializeField] Color zeroHealthColor = Color.red;         
+    [SerializeField] Color zeroHealthColor = Color.red;
+
+    [Header("Звук получения урона")]
+    [SerializeField] AudioClip hitClip;
     
     Animator _anim;
+    AudioSource _audioSource;
 
     bool _isDead;
     float _currentHealth;
@@ -36,7 +40,8 @@ public class Health : MonoBehaviour
     #region Awake Start Update
     private void Awake()
     {
-        _anim = GetComponent<Animator>();    
+        _anim = GetComponent<Animator>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -73,6 +78,9 @@ public class Health : MonoBehaviour
     public void Hit(float damage)
     {
         if (_isDead) return;
+
+        if (_audioSource && hitClip)
+            _audioSource.PlayOneShot(hitClip);
 
         SetActiveUI(true);
         _visibleTime = visibleUISec;

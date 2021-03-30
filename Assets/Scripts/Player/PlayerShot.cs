@@ -6,6 +6,7 @@ public class PlayerShot : MonoBehaviour
 
     [SerializeField] Transform gunPos;
     [SerializeField] GameObject bulletPrefab;
+    [SerializeField] AudioClip shotClip;
 
     Animator _anim;
     Player _player;
@@ -49,7 +50,11 @@ public class PlayerShot : MonoBehaviour
         }
     }
 
-    public void Shot() => Instantiate(bulletPrefab, gunPos.transform.position, gunPos.transform.rotation);
+    public void Shot()
+    {
+        Instantiate(bulletPrefab, gunPos.transform.position, gunPos.transform.rotation);
+        _player.audioSource.PlayOneShot(shotClip);
+    }
 
     public void StopGame() => Time.timeScale = 0;
     #endregion
