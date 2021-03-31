@@ -93,7 +93,8 @@ public class Enemy : MonoBehaviour
     bool CanSeePlayer()
     {
         // пока просто кидаю райкаст в таргет
-        RaycastHit2D hit2D = Physics2D.Raycast(transform.position, direction, distance, 8);// LayerMask.GetMask(LayersNames.Human));
+        LayerMask layer = LayerMask.GetMask(LayersNames.Human);
+        RaycastHit2D hit2D = Physics2D.Raycast(transform.position, direction, distance, layer);
         Debug.DrawRay(transform.position, direction);
         print(hit2D.collider);
         bool temp = hit2D.collider.gameObject.CompareTag(TagsNames.Player);
@@ -146,32 +147,32 @@ public class Enemy : MonoBehaviour
     #region Обработка триггера органов чувств. Пока одна на всех
     public void TriggerTreat(Collider2D collision)
     {
-        switch (collision.gameObject.tag)
-        {
-            case TagsNames.Player:
-                FindPlayer(collision);
-                break;
+        //switch (collision.tag)
+        //{
+        //    case TagsNames.Player:
+        //        FindPlayer(collision);
+        //        break;
 
-            case TagsNames.Bullet:
-                transform.up = Vector2.Lerp(transform.up, collision.transform.position, 1);
-                break;
-        }
+        //    case TagsNames.Bullet:
+        //        transform.up = Vector2.Lerp(transform.up, collision.transform.position, 1);
+        //        break;
+        //}
     }
 
     void FindPlayer(Collider2D collision)
     {
         target = collision.GetComponent<Transform>();
         direction = target.position - transform.position;
-        senceOrgans.SetActive(false);
+        distance = direction.magnitude;
 
         // не работает, устал исправлять
-        //if (CanSeePlayer())
-        //{
-        //    print(direction);
-        //    Debug.DrawRay(transform.position, direction);
-        //    senceOrgans.SetActive(false);
-        //}
-        //else target = null;
+        if (CanSeePlayer())
+        {
+            print(direction);
+            Debug.DrawRay(transform.position, direction);
+            //senceOrgans.SetActive(false);
+        }
+        else target = null;
     }
     #endregion
 

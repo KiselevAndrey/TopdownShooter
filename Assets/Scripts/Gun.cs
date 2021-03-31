@@ -47,7 +47,7 @@ public class Gun : MonoBehaviour
         }
     }
 
-    public void Shot()
+    void Shot()
     {
         Bullet bullet = Instantiate(bulletPrefab, gunPos.transform.position, gunPos.transform.rotation).GetComponent<Bullet>();
         bullet.damage = damage;

@@ -9,7 +9,7 @@ public class Trap : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer != Mathf.Log(layer, 2)) return;
+        if (1 << collision.gameObject.layer != layer) return;
 
         switch (type)
         {

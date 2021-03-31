@@ -32,6 +32,7 @@ public class Bullet : MonoBehaviour
     #region OnCollision
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        print("hit");
         Health health = collision.gameObject.GetComponent<Health>();
         if (health)
             health.Hit(damage);
