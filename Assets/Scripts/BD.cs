@@ -32,4 +32,5 @@ public static class AnimParam
 public static class LayersNames
 {
     public static string Human = "Human";
+    public static string Zombie = "Zombie";
 }

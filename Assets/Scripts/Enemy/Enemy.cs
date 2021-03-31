@@ -125,11 +125,23 @@ public class Enemy : MonoBehaviour
     void DestroyObject() => Destroy(gameObject);
     #endregion
 
-    #region LoseTarget
+    #region Target
     public void LoseTarget()
     {
         target = null;
         senceOrgans.SetActive(true);
+    }
+    public void SetTarget(Transform target)
+    {
+        this.target = target;
+        senceOrgans.SetActive(false);
+
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 10f, LayerMask.GetMask(LayersNames.Zombie));
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            Enemy zombie = colliders[i].GetComponent<Enemy>();
+            if (zombie && !zombie.target) zombie.SetTarget(target);
+        }
     }
     #endregion
 
@@ -141,38 +153,6 @@ public class Enemy : MonoBehaviour
         shot.enabled = value;
         attack.enabled = value;
         senceOrgans.SetActive(value);
-    }
-    #endregion
-
-    #region Обработка триггера органов чувств. Пока одна на всех
-    public void TriggerTreat(Collider2D collision)
-    {
-        //switch (collision.tag)
-        //{
-        //    case TagsNames.Player:
-        //        FindPlayer(collision);
-        //        break;
-
-        //    case TagsNames.Bullet:
-        //        transform.up = Vector2.Lerp(transform.up, collision.transform.position, 1);
-        //        break;
-        //}
-    }
-
-    void FindPlayer(Collider2D collision)
-    {
-        target = collision.GetComponent<Transform>();
-        direction = target.position - transform.position;
-        distance = direction.magnitude;
-
-        // не работает, устал исправлять
-        if (CanSeePlayer())
-        {
-            print(direction);
-            Debug.DrawRay(transform.position, direction);
-            //senceOrgans.SetActive(false);
-        }
-        else target = null;
     }
     #endregion
 

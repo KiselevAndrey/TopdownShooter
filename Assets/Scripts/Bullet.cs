@@ -2,8 +2,7 @@
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] float speed;
-
+    public float speed;
     public float damage;
 
     Rigidbody2D _rb;
@@ -32,7 +31,6 @@ public class Bullet : MonoBehaviour
     #region OnCollision
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        print("hit");
         Health health = collision.gameObject.GetComponent<Health>();
         if (health)
             health.Hit(damage);

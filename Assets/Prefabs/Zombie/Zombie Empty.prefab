@@ -61,6 +61,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 8457369024374193100}
+  senceOrgan: 0
+  rayCastLayers:
+    serializedVersion: 2
+    m_Bits: 20736
+  findingLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  chanceToDiscover: 10
+  updaterCount: 10
 --- !u!1 &4957931446536731981
 GameObject:
   m_ObjectHideFlags: 0
@@ -313,6 +322,7 @@ MonoBehaviour:
   fillImage: {fileID: 4112780999773290308}
   fullHealthColor: {r: 0, g: 1, b: 0, a: 1}
   zeroHealthColor: {r: 1, g: 0, b: 0, a: 1}
+  hitClip: {fileID: 0}
 --- !u!1 &5228990397359198375
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,6 +476,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 8457369024374193100}
+  senceOrgan: 1
+  rayCastLayers:
+    serializedVersion: 2
+    m_Bits: 20736
+  findingLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  chanceToDiscover: 100
+  updaterCount: 10
 --- !u!1 &6036337124752074075
 GameObject:
   m_ObjectHideFlags: 0

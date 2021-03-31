@@ -13,8 +13,9 @@ public class EnemySenceOrgan : MonoBehaviour
     [SerializeField] LayerMask findingLayers;
     [SerializeField, Range(0, 100)] float chanceToDiscover;
 
-    //[SerializeField] int updaterCount;
-    //int _i;
+    [SerializeField] int updaterCount;
+
+    int _i = 0;
 
     #region OnTrigger
     private void OnTriggerStay2D(Collider2D collision)
@@ -22,9 +23,15 @@ public class EnemySenceOrgan : MonoBehaviour
         CheckCollider(collision);
     }
 
-    #region TriggerTreat
     void CheckCollider(Collider2D collision)
     {
+        if(_i < updaterCount)
+        {
+            _i++;
+            return;
+        }
+        _i = 0;
+
         // collision.gameObject.layer - обычный int
         // findingLayers - двоичное представление выбранных слоев
 
@@ -34,6 +41,44 @@ public class EnemySenceOrgan : MonoBehaviour
         // смотрим есть ли такой слой в findingLayers с помощью битового & (если есть, то ответ должен быть больше 0)
         if ((currentLayer & findingLayers) == 0) return;
 
+        if (Random.value * 100 > chanceToDiscover) return;
+
+        switch (senceOrgan)
+        {
+            case SenceOrganType.Ear:
+                TreatHearing(collision);
+                break;
+            case SenceOrganType.Eye:
+                TreatSight(collision);
+                break;
+            case SenceOrganType.Nose:
+                break;
+        }
+    }
+
+    #region TriggerTreat
+    void TreatHearing(Collider2D collision)
+    {
+        if (Random.value * 100 > chanceToDiscover)
+        {
+            print("rotate");
+            Vector2 dir = Vector2.Lerp(enemy.transform.up, collision.transform.position - enemy.transform.up, 1);
+            enemy.transform.up = dir;
+            return;
+        }
+
+        enemy.SetTarget(collision.transform);
+    }
+
+    void TreatSight(Collider2D collision)
+    {
+        if (!TrowRayCast(collision)) return;
+
+        enemy.SetTarget(collision.transform);
+    }
+
+    bool TrowRayCast(Collider2D collision)
+    {
         // Узнаем вектор и дистанцию до collision.transfotm 
         Vector2 direction = collision.transform.position - enemy.transform.position;
         float distance = direction.magnitude;
@@ -42,22 +87,8 @@ public class EnemySenceOrgan : MonoBehaviour
         RaycastHit2D hit2D = Physics2D.Raycast(enemy.transform.position, direction, distance, rayCastLayers);
         //print(hit2D.collider.gameObject.layer);   // получили обычный int
 
-        // если лайер хита будет collision.gameObject.layer (новым битовым) и chanceToDiscover подходит, то срабатывает то что прописано для нужного органа чувств
-        if (collision.gameObject.layer != hit2D.collider.gameObject.layer) return;
-        if (Random.value * 100 > chanceToDiscover) return;
-        print("сработало");
-        switch (senceOrgan)
-        {
-            case SenceOrganType.Ear:
-                break;
-            case SenceOrganType.Eye:
-                break;
-            case SenceOrganType.Nose:
-                break;
-            default:
-                break;
-        }
-        // енеми получает новый таргет и enemy.senceOrgans отключается
+        // если лайер хита будет collision.gameObject.layer (новым битовым) и chanceToDiscover подходит, то true
+        return collision.gameObject.layer == hit2D.collider.gameObject.layer;
     }
     #endregion
     #endregion
