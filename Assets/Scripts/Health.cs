@@ -29,6 +29,7 @@ public class Health : MonoBehaviour
 
     bool _isDead;
     float _currentHealth;
+    float _lastTimeHit;
 
     #region Переменные для прятания UI
     bool _isVisible;
@@ -80,8 +81,13 @@ public class Health : MonoBehaviour
         if (_isDead) return;
 
         if (_audioSource && hitClip)
-            _audioSource.PlayOneShot(hitClip);
-
+        {
+            if(Time.realtimeSinceStartup - _lastTimeHit > hitClip.length)
+            {
+                _audioSource.PlayOneShot(hitClip);
+                _lastTimeHit = Time.realtimeSinceStartup;
+            }
+        }
         SetActiveUI(true);
         _visibleTime = visibleUISec;
 

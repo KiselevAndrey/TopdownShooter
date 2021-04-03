@@ -12,7 +12,6 @@ public class ExplosionBarrel : MonoBehaviour
     [Header("Визуализация")]
     [SerializeField] ParticleSystem preparationParticles;
     [SerializeField] ParticleSystem explosionParticles;
-    [SerializeField] AudioSource explosionAudio;
 
     #region Explosion
     void Preparation()
@@ -43,10 +42,9 @@ public class ExplosionBarrel : MonoBehaviour
             targetHealth.Hit(damage);
         }
 
-        explosionParticles.transform.parent = null;
-
+        explosionParticles.transform.parent = transform.parent;
+        explosionParticles.gameObject.SetActive(true);
         explosionParticles.Play();
-        //explosionAudio.Play();
 
         Destroy(gameObject);
     }

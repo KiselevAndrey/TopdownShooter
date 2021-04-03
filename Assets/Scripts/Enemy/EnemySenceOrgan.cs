@@ -52,6 +52,7 @@ public class EnemySenceOrgan : MonoBehaviour
                 TreatSight(collision);
                 break;
             case SenceOrganType.Nose:
+                TreatNose(collision);
                 break;
         }
     }
@@ -61,7 +62,6 @@ public class EnemySenceOrgan : MonoBehaviour
     {
         if (Random.value * 100 > chanceToDiscover)
         {
-            print("rotate");
             Vector2 dir = Vector2.Lerp(enemy.transform.up, collision.transform.position - enemy.transform.up, 1);
             enemy.transform.up = dir;
             return;
@@ -71,6 +71,13 @@ public class EnemySenceOrgan : MonoBehaviour
     }
 
     void TreatSight(Collider2D collision)
+    {
+        if (!TrowRayCast(collision)) return;
+
+        enemy.SetTarget(collision.transform);
+    }
+
+    void TreatNose(Collider2D collision)
     {
         if (!TrowRayCast(collision)) return;
 
