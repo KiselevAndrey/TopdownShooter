@@ -13,6 +13,9 @@ public class ExplosionBarrel : MonoBehaviour
     [SerializeField] ParticleSystem preparationParticles;
     [SerializeField] ParticleSystem explosionParticles;
 
+    [Header("Доп переменные")]
+    [SerializeField] int maxSoundsPlayed;
+
     #region Explosion
     void Preparation()
     {
@@ -24,6 +27,7 @@ public class ExplosionBarrel : MonoBehaviour
         Collider2D selfCollider = GetComponent<Collider2D>();
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, explosionRadius);
 
+        int j = 0;
         for (int i = 0; i < colliders.Length; i++)
         {
             if (colliders[i] == selfCollider) continue;
@@ -39,7 +43,9 @@ public class ExplosionBarrel : MonoBehaviour
                 continue;
 
             float damage = CalculateDamage(colliders[i].transform.position);
-            targetHealth.Hit(damage);
+            bool playSound = j <= maxSoundsPlayed || targetHealth.GetComponent<Player>();
+            targetHealth.Hit(damage, playSound);
+            j++;
         }
 
         explosionParticles.transform.parent = transform.parent;
@@ -52,7 +58,6 @@ public class ExplosionBarrel : MonoBehaviour
     private float CalculateDamage(Vector3 targetPosition)
     {
         Vector2 explosionToTarget = targetPosition - transform.position;
-
         float explosionDistance = explosionToTarget.magnitude;
         float relativeDistance = (explosionRadius - explosionDistance) / explosionRadius;
 
@@ -62,25 +67,22 @@ public class ExplosionBarrel : MonoBehaviour
         return damage;
     }
 
-    public static void AddExplosionForce(Rigidbody2D rb, float explosionForce, Vector2 explosionPosition, float explosionRadius, float upwardsModifier = 0.0F, ForceMode2D mode = ForceMode2D.Force)
+    void AddExplosionForce(Rigidbody2D rb, float explosionForce, Vector2 explosionPosition, float explosionRadius, ForceMode2D mode = ForceMode2D.Force)
     {
-        var explosionDir = rb.position - explosionPosition;
-        var explosionDistance = explosionDir.magnitude;
+        Vector2 explosionDir = rb.position - explosionPosition;
+        float explosionDistance = explosionDir.magnitude;
 
-        // Normalize without computing magnitude again
-        if (upwardsModifier == 0)
-            explosionDir /= explosionDistance;
-        else
-        {
-            // From Rigidbody.AddExplosionForce doc:
-            // If you pass a non-zero value for the upwardsModifier parameter, the direction
-            // will be modified by subtracting that value from the Y component of the centre point.
-            explosionDir.y += upwardsModifier;
-            explosionDir.Normalize();
-        }
+        explosionDir /= explosionDistance;
 
         Vector2 force = Mathf.Lerp(0, explosionForce, (1 - explosionDistance)) * explosionDir;
         rb.AddForce(force, mode);
+    }
+
+    void AddExplosionForce(Rigidbody2D body, float explosionForce, Vector3 explosionPosition, float explosionRadius)
+    {
+        var dir = (body.transform.position - explosionPosition);
+        float wearoff = 1 - (dir.magnitude / explosionRadius);
+        body.AddForce(dir.normalized * explosionForce * wearoff);
     }
     #endregion
 }

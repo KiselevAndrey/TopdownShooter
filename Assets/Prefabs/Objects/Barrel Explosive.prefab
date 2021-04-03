@@ -158,12 +158,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDamage: 100
-  explosionForce: 1000
+  explosionForce: 30000
   explosionRadius: 5
   preparationParticles: {fileID: 387406319627548914}
   explosionParticles: {fileID: 379703863228647666}
-  explosionAudioSource: {fileID: 2892519251812291617}
-  explosionAudioClip: {fileID: 8300000, guid: da0438fdffb11b145a5a702936df721e, type: 3}
+  maxSoundsPlayed: 5
 --- !u!114 &379703862210201496
 MonoBehaviour:
   m_ObjectHideFlags: 0

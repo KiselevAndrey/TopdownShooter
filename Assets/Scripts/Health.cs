@@ -76,11 +76,11 @@ public class Health : MonoBehaviour
     #endregion
 
     #region Hit
-    public void Hit(float damage)
+    public void Hit(float damage, bool playSound = true)
     {
         if (_isDead) return;
 
-        if (_audioSource && hitClip)
+        if (_audioSource && hitClip && playSound)
         {
             if(Time.realtimeSinceStartup - _lastTimeHit > hitClip.length)
             {
