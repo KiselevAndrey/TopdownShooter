@@ -67,21 +67,21 @@ public class EnemySenceOrgan : MonoBehaviour
             return;
         }
 
-        enemy.SetTarget(collision.transform);
+        enemy.SetTarget(collision.transform, true);
     }
 
     void TreatSight(Collider2D collision)
     {
         if (!TrowRayCast(collision)) return;
 
-        enemy.SetTarget(collision.transform);
+        enemy.SetTarget(collision.transform, true);
     }
 
     void TreatNose(Collider2D collision)
     {
         if (!TrowRayCast(collision)) return;
 
-        enemy.SetTarget(collision.transform);
+        enemy.SetTarget(collision.transform, true);
     }
 
     bool TrowRayCast(Collider2D collision)

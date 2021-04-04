@@ -185,7 +185,8 @@ MonoBehaviour:
   fillImage: {fileID: 1364548152359972713}
   fullHealthColor: {r: 0, g: 1, b: 0, a: 1}
   zeroHealthColor: {r: 1, g: 0, b: 0, a: 1}
-  hitClip: {fileID: 8300000, guid: cc0c59c4968e77d459557cba43fdd790, type: 3}
+  hitClips:
+  - {fileID: 8300000, guid: cc0c59c4968e77d459557cba43fdd790, type: 3}
 --- !u!82 &2892519251812291617
 AudioSource:
   m_ObjectHideFlags: 0

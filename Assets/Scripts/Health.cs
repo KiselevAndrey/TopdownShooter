@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 public class Health : MonoBehaviour
@@ -21,8 +22,8 @@ public class Health : MonoBehaviour
     [SerializeField] Color fullHealthColor = Color.green;
     [SerializeField] Color zeroHealthColor = Color.red;
 
-    [Header("Звук получения урона")]
-    [SerializeField] AudioClip hitClip;
+    [Header("Звуки получения урона")]
+    [SerializeField] List<AudioClip> hitClips;
     
     Animator _anim;
     AudioSource _audioSource;
@@ -30,6 +31,7 @@ public class Health : MonoBehaviour
     bool _isDead;
     float _currentHealth;
     float _lastTimeHit;
+    int _hitClipIndex;
 
     #region Переменные для прятания UI
     bool _isVisible;
@@ -80,11 +82,12 @@ public class Health : MonoBehaviour
     {
         if (_isDead) return;
 
-        if (_audioSource && hitClip && playSound)
+        if (_audioSource && hitClips.Count > 0 && playSound)
         {
-            if(Time.realtimeSinceStartup - _lastTimeHit > hitClip.length)
+            if(Time.realtimeSinceStartup - _lastTimeHit > hitClips[_hitClipIndex].length)
             {
-                _audioSource.PlayOneShot(hitClip);
+                _hitClipIndex = Random.Range(0, hitClips.Count);    // новый индекс звука
+                _audioSource.PlayOneShot(hitClips[_hitClipIndex]);
                 _lastTimeHit = Time.realtimeSinceStartup;
             }
         }

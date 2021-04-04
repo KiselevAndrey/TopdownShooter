@@ -238,6 +238,11 @@ MonoBehaviour:
   body: {fileID: 608705468575826305}
   senceOrgans: {fileID: 8931898199936008252}
   canPatrol: 0
+  audioSource: {fileID: 7060506174642144603}
+  findTarget:
+  - {fileID: 8300000, guid: b381e13615e873147a47f0b2c543b650, type: 3}
+  - {fileID: 8300000, guid: 0569e7a7aafca064a9fd24e39a2c1db3, type: 3}
+  - {fileID: 8300000, guid: ff632bf87b19b614fab52c26c9dc17c8, type: 3}
   currentState: 0
   direction: {x: 0, y: 0}
   target: {fileID: 0}
@@ -323,7 +328,10 @@ MonoBehaviour:
   fillImage: {fileID: 4112780999773290308}
   fullHealthColor: {r: 0, g: 1, b: 0, a: 1}
   zeroHealthColor: {r: 1, g: 0, b: 0, a: 1}
-  hitClip: {fileID: 8300000, guid: 7de609229e676cd46a414ae42701fb50, type: 3}
+  hitClips:
+  - {fileID: 8300000, guid: 7de609229e676cd46a414ae42701fb50, type: 3}
+  - {fileID: 8300000, guid: 0c48482267378c04eb0ea5ff5bba69f3, type: 3}
+  - {fileID: 8300000, guid: a1d446125db95cf41aee84e642cb5c99, type: 3}
 --- !u!82 &7060506174642144603
 AudioSource:
   m_ObjectHideFlags: 0

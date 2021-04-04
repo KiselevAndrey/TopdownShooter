@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public enum States { Guard, Patrol, Walk, Attack, Shot}
 public class Enemy : MonoBehaviour
@@ -20,6 +21,10 @@ public class Enemy : MonoBehaviour
 
     [Header("Доп переменные")]
     [SerializeField] bool canPatrol;
+
+    [Header("Звуки")]
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] List<AudioClip> findTarget;
 
 
     [HideInInspector] public States currentState;
@@ -131,10 +136,13 @@ public class Enemy : MonoBehaviour
         target = null;
         senceOrgans.SetActive(true);
     }
-    public void SetTarget(Transform target)
+    public void SetTarget(Transform target, bool playSound = false)
     {
         this.target = target;
         senceOrgans.SetActive(false);
+
+        if(playSound)
+            audioSource.PlayOneShot(findTarget[Random.Range(0, findTarget.Count)]);
 
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 10f, LayerMask.GetMask(LayersNames.Zombie));
         for (int i = 0; i < colliders.Length; i++)
