@@ -12,6 +12,7 @@ public static class TagsNames
     public const string Enemy = "Enemy";
     public const string Bonus = "Bonus";
     public const string Bullet = "Bullet";
+    public const string Weapon = "Weapon";
 }
 
 public static class MixerGroup

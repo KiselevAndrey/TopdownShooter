@@ -3,18 +3,21 @@ using UnityEngine;
 
 public class ArmAttack : MonoBehaviour
 {
-    [SerializeField] Enemy _enemy;
     [SerializeField] SpriteRenderer spriteRenderer;
 
-    List<Health> healths = new List<Health>();
+    List<Health> _healths = new List<Health>();
 
-    public void Attack()
+    public void Attack(float damage)
     {
-        for (int i = 0; i < healths.Count; i++)
-            healths[i].Hit(_enemy.attack.damage);
+        for (int i = 0; i < _healths.Count; i++)
+            _healths[i].Hit(damage);
     }
 
-    public void EnableSprite(bool value) => spriteRenderer.enabled = value;
+    public void EnableSprite(bool value)
+    {
+        if(spriteRenderer)
+            spriteRenderer.enabled = value;
+    }
 
     #region OnTrigger
     private void OnTriggerEnter2D(Collider2D collision)
@@ -22,14 +25,14 @@ public class ArmAttack : MonoBehaviour
         Health health = collision.GetComponent<Health>();
 
         if (health)
-            healths.Add(health);
+            _healths.Add(health);
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         Health health = collision.GetComponent<Health>();
 
         if (health)
-            healths.Remove(health);
+            _healths.Remove(health);
     }
     #endregion
 }

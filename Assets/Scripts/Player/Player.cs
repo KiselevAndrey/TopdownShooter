@@ -2,7 +2,7 @@
 
 public class Player : MonoBehaviour
 {
-    PlayerShot shot;
+    PlayerAttack shot;
     PlayerMove move;
     Health health;
 

@@ -17,12 +17,12 @@ public class EnemyAttack : MonoBehaviour
     [SerializeField] Collider2D selfBody;
 
     [HideInInspector] public bool isAttaking;
-    [HideInInspector] public float damage;
 
     Enemy _enemy;
 
     float _timeLastShot;
     float _attackRate;
+    float _damage;
 
     #region Awake Start Update
     void Awake()
@@ -33,7 +33,7 @@ public class EnemyAttack : MonoBehaviour
     private void Start()
     {
         _attackRate = Random.Range(minAttackRate, maxAttackRate);
-        damage = Random.Range(minDamage, maxDamage);
+        _damage = Random.Range(minDamage, maxDamage);
 
         _timeLastShot = _attackRate;
     }
@@ -72,7 +72,7 @@ public class EnemyAttack : MonoBehaviour
     public void ArmTriggerEnable()
     {
         arm.EnableSprite(true);
-        arm.Attack();
+        arm.Attack(_damage);
     }
 
     public void ArmTriggerDisable() => arm.EnableSprite(false);
