@@ -20,6 +20,8 @@ public class GunSO : ScriptableObject
     public GameObject bulletPrefab;
     public AmmoType ammoType;
     public float bulletSpeed;
+    public int bulletLife;
+    public float bulletLifeTime;
 
     [Header("Звуки")]
     public AudioClip shotClip;

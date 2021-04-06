@@ -13,19 +13,19 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField, Range(0, 10)] float armDamage;
     [SerializeField, Range(0, 3)] float armRate;
 
-    [HideInInspector] public bool canPickUp;
-
     Animator _anim;
     Player _player;
-    Gun posibleWeapon;
+    Gun _posibleWeapon;
 
     bool _canArmAttack = true;
+    bool _canPickUp;
 
-    #region Awake Start Update
+    #region Awake Start Update OnDestroy
     void Awake()
     {
         _anim = GetComponent<Animator>();
         _player = GetComponent<Player>();
+        Gun.CanPickUp += CanPickUp;
     }
 
     private void Start()
@@ -38,6 +38,11 @@ public class PlayerAttack : MonoBehaviour
 
         CheckAttack();
         CheckPickUp();
+    }
+
+    private void OnDestroy()
+    {
+        Gun.CanPickUp -= CanPickUp;
     }
     #endregion
 
@@ -61,7 +66,7 @@ public class PlayerAttack : MonoBehaviour
             if (gun.TryShot())
                 _anim.SetTrigger(AnimParam.Shot);
         }
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKey(KeyCode.R))
             gun.Reload();
         if (Input.GetKeyUp(KeyCode.R))
             gun.EndReload();
@@ -84,41 +89,39 @@ public class PlayerAttack : MonoBehaviour
     #endregion
 
     #region Pick Up Down
+    void CanPickUp(bool value, Gun nearlyGun)
+    {
+        _canPickUp = value;
+        _posibleWeapon = nearlyGun;
+    }
+
     void CheckPickUp()
     {
-        // если нечего поднимать или нечего выбрасывать
-        if (!canPickUp || !gun) return;
+        // если нечего поднимать и нечего выбрасывать
+        if (!_canPickUp && !gun) return;
 
         if (Input.GetKeyUp(KeyCode.E))
         {
-            if (gun) DropWeapon();
-            if (canPickUp) PickUpWeapon();
+            if (gun && gun.CanShoot()) DropWeapon();
+            if (_canPickUp) PickUpWeapon();
         }
     }
 
     void DropWeapon()
     {
+        gunPos.gameObject.SetActive(false);
         gun.transform.parent = transform.parent;
-        gun.Pick(false);
+        gun.Drop();
+        gun = null;
     }
 
     void PickUpWeapon()
     {
-        gun = posibleWeapon;
+        if (gun) return;
+        gunPos.gameObject.SetActive(true);
+        gun = _posibleWeapon;
         gun.transform.parent = gunPos;
-        gun.Pick(true);
-    }
-    #endregion
-
-    #region OnTrigger
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        switch (collision.tag)
-        {
-            case TagsNames.Weapon:
-                posibleWeapon = collision.GetComponent<Gun>();
-                break;
-        }
+        gun.PickUp();
     }
     #endregion
 }

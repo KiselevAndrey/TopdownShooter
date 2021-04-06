@@ -61,15 +61,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 8457369024374193100}
-  senceOrgan: 0
   rayCastLayers:
     serializedVersion: 2
     m_Bits: 20736
   findingLayers:
     serializedVersion: 2
     m_Bits: 256
-  chanceToDiscover: 10
+  chanceToDiscover: 1
   updaterCount: 20
+  onlyTurn: 1
+  trowRayCast: 0
 --- !u!1 &4957931446536731981
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,7 +286,6 @@ MonoBehaviour:
   arm: {fileID: 1481432604398937264}
   selfBody: {fileID: 608705468575826305}
   isAttaking: 0
-  damage: 0
 --- !u!114 &6165173568235733455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -437,9 +437,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2463622174585966838}
+  - component: {fileID: 353094818320653019}
   - component: {fileID: 364879603028850633}
   - component: {fileID: 1140739261232603011}
-  - component: {fileID: 353094818320653019}
   m_Layer: 13
   m_Name: Sight
   m_TagString: Untagged
@@ -461,6 +461,29 @@ Transform:
   m_Father: {fileID: 6264637828374615123}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &353094818320653019
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5228990397359198375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8070cfb88dfb7b469ca9943a19bdf51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 8457369024374193100}
+  rayCastLayers:
+    serializedVersion: 2
+    m_Bits: 20736
+  findingLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  chanceToDiscover: 100
+  updaterCount: 20
+  onlyTurn: 0
+  trowRayCast: 1
 --- !u!212 &364879603028850633
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -568,28 +591,6 @@ PolygonCollider2D:
       - {x: 0.03, y: 0.58}
       - {x: 0.12, y: 0.87}
       - {x: 0.14999999, y: 0.96999997}
---- !u!114 &353094818320653019
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5228990397359198375}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8070cfb88dfb7b469ca9943a19bdf51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemy: {fileID: 8457369024374193100}
-  senceOrgan: 1
-  rayCastLayers:
-    serializedVersion: 2
-    m_Bits: 20736
-  findingLayers:
-    serializedVersion: 2
-    m_Bits: 256
-  chanceToDiscover: 100
-  updaterCount: 20
 --- !u!1 &6036337124752074075
 GameObject:
   m_ObjectHideFlags: 0
@@ -742,7 +743,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d60b41ff9d445e48a45fa38f24157bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemy: {fileID: 8457369024374193100}
   spriteRenderer: {fileID: 6518188397003107708}
 --- !u!1 &7857562766196917859
 GameObject:
@@ -753,8 +753,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6059846738821202591}
-  - component: {fileID: 3342278287055445124}
   - component: {fileID: 7374273462022005259}
+  - component: {fileID: 3342278287055445124}
   m_Layer: 13
   m_Name: Nose
   m_TagString: Untagged
@@ -776,6 +776,29 @@ Transform:
   m_Father: {fileID: 6264637828374615123}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7374273462022005259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7857562766196917859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8070cfb88dfb7b469ca9943a19bdf51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 8457369024374193100}
+  rayCastLayers:
+    serializedVersion: 2
+    m_Bits: 16640
+  findingLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  chanceToDiscover: 100
+  updaterCount: 20
+  onlyTurn: 1
+  trowRayCast: 0
 --- !u!58 &3342278287055445124
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -792,28 +815,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 6
---- !u!114 &7374273462022005259
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7857562766196917859}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f8070cfb88dfb7b469ca9943a19bdf51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemy: {fileID: 8457369024374193100}
-  senceOrgan: 2
-  rayCastLayers:
-    serializedVersion: 2
-    m_Bits: 16640
-  findingLayers:
-    serializedVersion: 2
-    m_Bits: 256
-  chanceToDiscover: 100
-  updaterCount: 20
 --- !u!1 &8931898199936008252
 GameObject:
   m_ObjectHideFlags: 0

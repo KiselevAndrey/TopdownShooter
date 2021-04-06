@@ -17,12 +17,14 @@ MonoBehaviour:
   bulletPerShot: 1
   ammoPerShot: 1
   bulletInMagazine: 10
-  reloadOneBulletEach: 1
+  reloadOneBulletEach: 0
   reloadTime: 0.5
   bulletPrefab: {fileID: 1800685372759179360, guid: 0f46c54a958b08f49a3930aeaa69f155,
     type: 3}
   ammoType: 1
   bulletSpeed: 10
+  bulletLife: 1
+  bulletLifeTime: 4
   shotClip: {fileID: 8300000, guid: 833ca4053ad00c743b6971b15ea773bf, type: 3}
   reloadAmmoClip: {fileID: 8300000, guid: cf13733502eeab546b0b53d07eeff4ea, type: 3}
   endReloadClip: {fileID: 8300000, guid: 8287a31137a24b34d8c966c84bfeb286, type: 3}

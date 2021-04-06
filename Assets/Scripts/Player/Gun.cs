@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 
@@ -22,6 +23,12 @@ public class Gun : MonoBehaviour
     [Header("Доп объекты")]
     [SerializeField] GameObject sprites;
     [SerializeField] CircleCollider2D bodyCollider;
+
+    public static Action<bool, string> OnPlayerNearly;
+    public static Action<bool, Gun> CanPickUp;
+    public static Action<Sprite, int> PickUpAction;
+    public static Action DropAction;
+    public static Action<int> ChangeBulletInMagasineAction;
 
     int _bulletInMagazine;
     bool _canShot;
@@ -63,19 +70,21 @@ public class Gun : MonoBehaviour
         for (int i = 0; i < gunSO.bulletPerShot; i++)
         {
             Vector3 tempCrosshairPos = crosshairPos.position;
-            tempCrosshairPos.x += (Random.value - .5f) * gunSO.spreadRadius;
-            tempCrosshairPos.y += (Random.value - .5f) * gunSO.spreadRadius;
+            tempCrosshairPos.x += (UnityEngine.Random.value - .5f) * gunSO.spreadRadius;
+            tempCrosshairPos.y += (UnityEngine.Random.value - .5f) * gunSO.spreadRadius;
 
             Vector2 tempDirection = tempCrosshairPos - gunPos.position; 
 
             gunPos.up = tempDirection;
 
             Bullet bullet = Instantiate(gunSO.bulletPrefab, gunPos.position, gunPos.rotation).GetComponent<Bullet>();
-            bullet.damage = Random.Range(minDamage, maxDamage);
+            bullet.damage = UnityEngine.Random.Range(minDamage, maxDamage);
             bullet.speed = gunSO.bulletSpeed;
+            bullet.SetLifeTime(gunSO.bulletLifeTime * UnityEngine.Random.Range(.9f, 1.1f));
+            bullet.life = gunSO.bulletLife;
         }
 
-        _bulletInMagazine -= gunSO.ammoPerShot;
+        ChangeBulletInMagasine(_bulletInMagazine - gunSO.ammoPerShot);
 
         audioSource.PlayOneShot(gunSO.shotClip);
         StartCoroutine(GunShot());
@@ -88,7 +97,7 @@ public class Gun : MonoBehaviour
         _canShot = true;
     }
 
-    public bool CanShoot() => _canShot;
+    public bool CanShoot() => _canShot && !_reloading;
     #endregion
 
     #region Reload
@@ -116,11 +125,19 @@ public class Gun : MonoBehaviour
     IEnumerator Reloading(int newCountBullet)
     {
         _reloading = true;
+
         yield return new WaitForSeconds(gunSO.reloadTime);
-        _bulletInMagazine = newCountBullet;
+        ChangeBulletInMagasine(newCountBullet);
+
         _reloading = false;
 
-        if (!_playerReload) audioSource.PlayOneShot(gunSO.endReloadClip);
+        if (!_playerReload || _bulletInMagazine == gunSO.bulletInMagazine) audioSource.PlayOneShot(gunSO.endReloadClip);
+    }
+
+    void ChangeBulletInMagasine(int newCountBullet)
+    {
+        _bulletInMagazine = newCountBullet;
+        ChangeBulletInMagasineAction?.Invoke(_bulletInMagazine);
     }
 
     public void EndReload()
@@ -130,10 +147,37 @@ public class Gun : MonoBehaviour
     #endregion
 
     #region Pick Up Down
-    public void Pick(bool up)
+    public void PickUp()
+    {
+        Pick(true);
+        _bulletInMagazine = gunSO.bulletInMagazine;
+
+        transform.localPosition = Vector3.zero;
+        transform.localRotation = Quaternion.identity;
+
+        if (!_playerReload) audioSource.PlayOneShot(gunSO.endReloadClip);
+
+        PickUpAction?.Invoke(gunSO.frontSprite, _bulletInMagazine);
+    }
+
+    public void Drop()
+    {
+        Pick(false);
+
+        DropAction?.Invoke();
+    }
+
+    void Pick(bool up)
     {
         sprites.SetActive(!up);
         bodyCollider.enabled = !up;
+    }
+
+    // отправляет рассылку UI, если он подписан
+    void PlayerNearly(bool playerNearly)
+    {
+        CanPickUp?.Invoke(playerNearly, this);
+        OnPlayerNearly?.Invoke(playerNearly, description);
     }
     #endregion
 
@@ -143,9 +187,7 @@ public class Gun : MonoBehaviour
         switch (collision.tag)
         {
             case TagsNames.Player:
-                PlayerAttack pa = collision.GetComponent<PlayerAttack>();
-                if(pa)
-                    pa.canPickUp = true;
+                PlayerNearly(true);
                 break;
         }
     }
@@ -155,9 +197,10 @@ public class Gun : MonoBehaviour
         switch (collision.tag)
         {
             case TagsNames.Player:
-                PlayerAttack pa = collision.GetComponent<PlayerAttack>();
-                if (pa)
-                    pa.canPickUp = false;
+                //PlayerAttack pa = collision.GetComponent<PlayerAttack>();
+                //if (pa)
+                //    pa.canPickUp = false;
+                PlayerNearly(false);
                 break;
         }
     }

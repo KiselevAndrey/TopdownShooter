@@ -1,19 +1,19 @@
 ﻿
 using UnityEngine;
 
-enum SenceOrganType { Ear, Eye, Nose}
-
 public class EnemySenceOrgan : MonoBehaviour
 {
     [SerializeField] Enemy enemy;
 
     [Header("Свойства")]
-    [SerializeField] SenceOrganType senceOrgan;
     [SerializeField] LayerMask rayCastLayers;
     [SerializeField] LayerMask findingLayers;
     [SerializeField, Range(0, 100)] float chanceToDiscover;
 
     [SerializeField] int updaterCount;
+
+    [SerializeField] bool onlyTurn;
+    [SerializeField] bool trowRayCast;
 
     int _i = 0;
 
@@ -43,45 +43,33 @@ public class EnemySenceOrgan : MonoBehaviour
 
         if (Random.value * 100 > chanceToDiscover) return;
 
-        switch (senceOrgan)
-        {
-            case SenceOrganType.Ear:
-                TreatHearing(collision);
-                break;
-            case SenceOrganType.Eye:
-                TreatSight(collision);
-                break;
-            case SenceOrganType.Nose:
-                TreatNose(collision);
-                break;
-        }
+        TrigerTreat(collision);
     }
 
     #region TriggerTreat
-    void TreatHearing(Collider2D collision)
+    void TrigerTreat(Collider2D collision)
     {
-        if (Random.value * 100 > chanceToDiscover)
+        // если только через бросок рейкаста
+        if (trowRayCast)
         {
-            Vector2 dir = Vector2.Lerp(enemy.transform.up, collision.transform.position - enemy.transform.up, 1);
-            enemy.transform.up = dir;
-            return;
+            // если не цель, то выходим
+            if (!TrowRayCast(collision))
+                return;
         }
-
-        enemy.SetTarget(collision.transform, true);
+        
+        TrySetEnemy(collision);        
     }
 
-    void TreatSight(Collider2D collision)
+    void TrySetEnemy(Collider2D collision)
     {
-        if (!TrowRayCast(collision)) return;
-
-        enemy.SetTarget(collision.transform, true);
+        if (onlyTurn) Turn(collision);
+        else enemy.SetTarget(collision.transform, true);
     }
 
-    void TreatNose(Collider2D collision)
+    void Turn(Collider2D collision)
     {
-        if (!TrowRayCast(collision)) return;
-
-        enemy.SetTarget(collision.transform, true);
+        Vector2 dir = Vector2.Lerp(enemy.transform.up, collision.transform.position - enemy.transform.up, 1);
+        enemy.transform.up = dir;
     }
 
     bool TrowRayCast(Collider2D collision)

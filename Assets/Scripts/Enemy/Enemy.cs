@@ -94,20 +94,6 @@ public class Enemy : MonoBehaviour
     }
     #endregion
 
-    #region видимость игрока райкастом
-    bool CanSeePlayer()
-    {
-        // пока просто кидаю райкаст в таргет
-        LayerMask layer = LayerMask.GetMask(LayersNames.Human);
-        RaycastHit2D hit2D = Physics2D.Raycast(transform.position, direction, distance, layer);
-        Debug.DrawRay(transform.position, direction);
-        print(hit2D.collider);
-        bool temp = hit2D.collider.gameObject.CompareTag(TagsNames.Player);
-        print(hit2D.collider);
-        return temp;
-    }
-    #endregion
-
     #region Die
     public bool IsDead() => _health.IsDead();
     
@@ -141,7 +127,7 @@ public class Enemy : MonoBehaviour
         this.target = target;
         senceOrgans.SetActive(false);
 
-        if(playSound)
+        if(playSound && Random.value > 0.5f)
             audioSource.PlayOneShot(findTarget[Random.Range(0, findTarget.Count)]);
 
         Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 10f, LayerMask.GetMask(LayersNames.Zombie));

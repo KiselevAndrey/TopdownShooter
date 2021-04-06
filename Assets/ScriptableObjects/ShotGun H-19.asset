@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b73693305e223049a4501f60a2e7879, type: 3}
+  m_Name: ShotGun H-19
+  m_EditorClassIdentifier: 
+  fireRate: 1
+  spreadRadius: 2
+  bulletPerShot: 10
+  ammoPerShot: 1
+  bulletInMagazine: 5
+  reloadOneBulletEach: 1
+  reloadTime: 0.3
+  bulletPrefab: {fileID: 1800685372759179360, guid: 0f46c54a958b08f49a3930aeaa69f155,
+    type: 3}
+  ammoType: 0
+  bulletSpeed: 10
+  bulletLife: 1
+  bulletLifeTime: 0.3
+  shotClip: {fileID: 8300000, guid: cdacb7e8a34011b41ad64c98296ff305, type: 3}
+  reloadAmmoClip: {fileID: 8300000, guid: ebdc3f319786d3d45be5c7ee16036d11, type: 3}
+  endReloadClip: {fileID: 8300000, guid: b9e33d57b3f48194583f357f0c59a805, type: 3}
+  noAmmoClip: {fileID: 8300000, guid: 60f73dc116d1b184283f1d85f89a85f3, type: 3}
+  frontSprite: {fileID: 21300000, guid: 3ce734da0e4b99840ad5dc2c8d158ed4, type: 3}

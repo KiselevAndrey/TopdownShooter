@@ -379,8 +379,8 @@ MonoBehaviour:
   gun: {fileID: 0}
   armPos: {fileID: 4278715077286230497}
   armAttack: {fileID: 4754124848651246948}
-  armDamage: 5
-  armRate: 2
+  armDamage: 2
+  armRate: 0.5
 --- !u!114 &4620564190669898736
 MonoBehaviour:
   m_ObjectHideFlags: 0
