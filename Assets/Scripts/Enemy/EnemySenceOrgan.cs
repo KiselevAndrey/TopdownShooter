@@ -1,5 +1,4 @@
-﻿
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemySenceOrgan : MonoBehaviour
 {
@@ -20,7 +19,12 @@ public class EnemySenceOrgan : MonoBehaviour
     #region OnTrigger
     private void OnTriggerStay2D(Collider2D collision)
     {
-        CheckCollider(collision);
+        switch (collision.tag)
+        {
+            case TagsNames.Player:
+                CheckCollider(collision);
+                break;
+        }
     }
 
     void CheckCollider(Collider2D collision)

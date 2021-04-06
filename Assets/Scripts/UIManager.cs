@@ -30,6 +30,7 @@ public class UIManager : MonoBehaviour
         Gun.OnPlayerNearly -= ShowGunDescriptionAction;
         Gun.PickUpAction -= PickUp;
         Gun.DropAction -= Drop;
+        Gun.ChangeBulletInMagasineAction -= ChangeBulletInMagasine;
     }
     #endregion
 
