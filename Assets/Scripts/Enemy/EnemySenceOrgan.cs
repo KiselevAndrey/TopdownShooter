@@ -1,32 +1,63 @@
 ﻿using UnityEngine;
 
+enum SenceOrganType { Ear, Eye, Nose }
+
 public class EnemySenceOrgan : MonoBehaviour
 {
     [SerializeField] Enemy enemy;
 
     [Header("Свойства")]
+    //[SerializeField] SenceOrganType type;
     [SerializeField] LayerMask rayCastLayers;
     [SerializeField] LayerMask findingLayers;
     [SerializeField, Range(0, 100)] float chanceToDiscover;
+    [SerializeField, Min(0)] float range; 
 
     [SerializeField] int updaterCount;
 
-    [SerializeField] bool onlyTurn;
+    //[SerializeField] 
+    bool onlyTurn;
     [SerializeField] bool trowRayCast;
 
     int _i = 0;
 
-    #region OnTrigger
-    private void OnTriggerStay2D(Collider2D collision)
+    #region OnEnable OnDisable OnDestroy
+    private void OnEnable()
     {
-        switch (collision.tag)
-        {
-            case TagsNames.Player:
-                CheckCollider(collision);
-                break;
-        }
+        
     }
 
+    private void OnDisable()
+    {
+        
+    }
+
+    void OnDestroy()
+    {
+
+    }
+
+    private void Update()
+    {
+        if (_i > updaterCount)
+        {
+            // кидаем оверлап
+            Collider2D[] targets = Physics2D.OverlapCircleAll(transform.position, range, findingLayers);
+
+            for (int i = 0; i < targets.Length; i++)
+            {
+                if (Random.value * 100 > chanceToDiscover) return;
+
+                CollisionTreat(targets[i]);
+            }
+
+            _i = 0;
+        }
+        else _i++;
+    }
+    #endregion
+
+    #region OnTrigger
     void CheckCollider(Collider2D collision)
     {
         if(_i < updaterCount)
@@ -47,11 +78,11 @@ public class EnemySenceOrgan : MonoBehaviour
 
         if (Random.value * 100 > chanceToDiscover) return;
 
-        TrigerTreat(collision);
+        CollisionTreat(collision);
     }
 
-    #region TriggerTreat
-    void TrigerTreat(Collider2D collision)
+    #region CollisionTreat
+    void CollisionTreat(Collider2D collision)
     {
         // если только через бросок рейкаста
         if (trowRayCast)
@@ -91,9 +122,4 @@ public class EnemySenceOrgan : MonoBehaviour
     }
     #endregion
     #endregion
-
-    private void OnDestroy()
-    {
-        
-    }
 }

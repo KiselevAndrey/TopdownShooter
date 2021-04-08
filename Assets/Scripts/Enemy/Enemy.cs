@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
 
     [Header("Доп переменные")]
     [SerializeField] bool canPatrol;
+    public bool pursueOutMaxTrackingDistance;
 
     [Header("Звуки")]
     [SerializeField] AudioSource audioSource;
@@ -122,7 +123,7 @@ public class Enemy : MonoBehaviour
         target = null;
         senceOrgans.SetActive(true);
     }
-    public void SetTarget(Transform target, bool playSound = false)
+    public void SetTarget(Transform target, bool playSound = false, bool outMaxDistance = false, bool fromSpawner = false)
     {
         this.target = target;
         senceOrgans.SetActive(false);
@@ -130,12 +131,16 @@ public class Enemy : MonoBehaviour
         if(playSound && Random.value > 0.5f)
             audioSource.PlayOneShot(findTarget[Random.Range(0, findTarget.Count)]);
 
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 10f, LayerMask.GetMask(LayersNames.Zombie));
-        for (int i = 0; i < colliders.Length; i++)
+        if (!fromSpawner)
         {
-            Enemy zombie = colliders[i].GetComponent<Enemy>();
-            if (zombie && !zombie.target) zombie.SetTarget(target);
+            Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 10f, LayerMask.GetMask(LayersNames.Zombie));
+            for (int i = 0; i < colliders.Length; i++)
+            {
+                Enemy zombie = colliders[i].GetComponent<Enemy>();
+                if (zombie && !zombie.target) zombie.SetTarget(target);
+            }
         }
+        pursueOutMaxTrackingDistance = outMaxDistance;
     }
     #endregion
 

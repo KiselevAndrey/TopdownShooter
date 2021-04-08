@@ -61,7 +61,7 @@ public class EnemyWalk : MonoBehaviour
         if (_enemy.distance < _minDistance)
             _rb.velocity = _enemy.direction.normalized * -_maxSpeed;
 
-        if (_enemy.distance > maxTrackingDistance)
+        if (_enemy.distance > maxTrackingDistance && !_enemy.pursueOutMaxTrackingDistance)
         {
             _enemy.LoseTarget();
             _rb.velocity = Vector2.zero;
@@ -89,7 +89,7 @@ public class EnemyWalk : MonoBehaviour
         if(_enemy.distance < _minDistance)
             _rb.velocity = _enemy.direction.normalized * -_maxSpeed;
 
-        if (_enemy.distance > maxTrackingDistance)
+        if (_enemy.distance > maxTrackingDistance && !_enemy.pursueOutMaxTrackingDistance)
         {
             _enemy.LoseTarget();
             _rb.velocity = Vector2.zero;

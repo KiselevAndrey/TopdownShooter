@@ -4,16 +4,16 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] List<GameObject> prefabs;
-    [SerializeField] int count;
-    [SerializeField] float range;
+    [SerializeField] protected List<GameObject> prefabs;
+    [SerializeField] protected int count;
+    [SerializeField] protected float range;
 
     private void OnEnable()
     {
         StartCoroutine(Spawn());
     }
 
-    IEnumerator Spawn()
+    protected IEnumerator Spawn()
     {
         for (int i = 0; i < count; i++)
         {
