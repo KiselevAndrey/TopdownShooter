@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-public enum States { Guard, Patrol, Walk, Attack, Shot}
 public class Enemy : MonoBehaviour
 {
     [Header("Описание")]
