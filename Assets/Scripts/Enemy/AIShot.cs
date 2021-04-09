@@ -18,4 +18,6 @@ public class AIShot : MonoBehaviour
     {
         
     }
+
+    public bool CanShoot() => false;
 }

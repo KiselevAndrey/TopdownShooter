@@ -32,7 +32,7 @@ public class AIWalk : MonoBehaviour
 
     private void Update()
     {
-        if (aiPath.velocity.magnitude == 0 && isWalking)
+        if (shotPriority ? ai.shot.CanShoot() : ai.attack.CanAttack())
         {
             isWalking = false;
             ai.anim.SetFloat(AnimParam.Speed, 0);
@@ -52,8 +52,9 @@ public class AIWalk : MonoBehaviour
         Enable(false);
     }
 
-    void Enable(bool value)
+    public void Enable(bool value)
     {
+        this.enabled = value;
         aiPath.enabled = value;
         aiDestSetter.enabled = value;
     }

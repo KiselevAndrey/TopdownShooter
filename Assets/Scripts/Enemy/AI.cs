@@ -24,8 +24,9 @@ public class AI : MonoBehaviour
     [SerializeField] AudioSource audioSource;
     [SerializeField] List<AudioClip> findTarget;
 
-    [HideInInspector] public States currentState;
-    public Transform target;
+    public States currentState;
+    public Transform attackTarget;
+    public Transform guardTarget;
     [HideInInspector] public Vector2 direction;
     [HideInInspector] public float distance;
     [HideInInspector] public bool isDie;
@@ -38,7 +39,14 @@ public class AI : MonoBehaviour
 
     private void Update()
     {
-        
+        if (attackTarget)
+        {
+            direction = attackTarget.position - transform.position;
+            distance = direction.magnitude;
+
+            if (distance > walk.maxTrackingDistance && !walk.trackingInfinityly)
+                LoseTarget();
+        }
     }
     #endregion
 
@@ -66,25 +74,6 @@ public class AI : MonoBehaviour
     #endregion
 
     #region States
-    void UpdateState()
-    {
-        switch (currentState)
-        {
-            case States.Guard:
-                break;
-            case States.Patrol:
-                break;
-            case States.WalkToAttack:
-                break;
-            case States.Attack:
-                break;
-            case States.Shot:
-                break;
-            case States.Idle:
-                break;
-        }
-    }
-
     public void ChangeStage(States newState)
     {
         currentState = newState;
@@ -111,18 +100,19 @@ public class AI : MonoBehaviour
                 break;
             case States.Idle:
                 print("Idle");
+                Idle();
                 break;
         }
     }
 
     void Walk()
     {
-        walk.enabled = true;
+        walk.Enable(true);
 
         switch (currentState)
         {
             case States.Guard:
-                walk.StartWalk(HelperVector.NewPointFromRange(target.position, walk.guardDistance));
+                walk.StartWalk(HelperVector.NewPointFromRange(attackTarget.position, walk.guardDistance));
                 break;
 
             case States.Patrol:
@@ -130,30 +120,53 @@ public class AI : MonoBehaviour
                 break;
 
             case States.WalkToAttack:
-                walk.StartWalk(target);
+                walk.StartWalk(attackTarget);
                 break;
         }
     }
 
     void Attack()
     {
-        walk.enabled = false;
+        walk.Enable(false);
 
         switch (currentState)
         {
             case States.Attack:
+                print("Attack");
+                attack.Attack();
                 break;
             case States.Shot:
                 print("Shot");
                 break;
         }
     }
+
+    void Idle()
+    {
+        if (attackTarget)
+            ChangeStage(States.WalkToAttack);
+
+        else if(guardTarget)
+            ChangeStage(States.Guard);
+
+        else
+            ChangeStage(States.Patrol);
+    }
     #endregion
 
     #region Target
     public void SetTarget(Transform target)
     {
+        attackTarget = target;
+        ChangeStage(States.WalkToAttack);
+        senceOrgans.SetActive(false);
+    }
 
+    public void LoseTarget()
+    {
+        attackTarget = null;
+        ChangeStage(States.Idle);
+        senceOrgans.SetActive(true);
     }
     #endregion
 }
