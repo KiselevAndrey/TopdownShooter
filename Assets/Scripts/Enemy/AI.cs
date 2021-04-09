@@ -19,6 +19,7 @@ public class AI : MonoBehaviour
     [Header("Основные объекты")]
     public Animator anim;
     [SerializeField] GameObject senceOrgans;
+    [SerializeField] CircleCollider2D body;
 
     [Header("Звуки")]
     [SerializeField] AudioSource audioSource;
@@ -39,6 +40,12 @@ public class AI : MonoBehaviour
 
     private void Update()
     {
+        if(IsDead())
+        {
+            Die();
+            return;
+        }
+
         if (attackTarget)
         {
             direction = attackTarget.position - transform.position;
@@ -65,8 +72,7 @@ public class AI : MonoBehaviour
     #region Вкл выкл скриптов
     void EnableObject(bool value)
     {
-        anim.enabled = value;
-        walk.enabled = value;
+        walk.Enable(value);
         shot.enabled = value;
         attack.enabled = value;
         senceOrgans.SetActive(value);
@@ -81,25 +87,17 @@ public class AI : MonoBehaviour
         switch (newState)
         {
             case States.Guard:
-                print("Guard");
-                Walk();
-                break;
             case States.Patrol:
-                print("Patrol");
-                Walk();
-                break;
             case States.WalkToAttack:
-                print("Walk");
                 Walk();
                 break;
+
             case States.Attack:
-                Attack();
-                break;
             case States.Shot:
                 Attack();
                 break;
+
             case States.Idle:
-                print("Idle");
                 Idle();
                 break;
         }
@@ -112,7 +110,7 @@ public class AI : MonoBehaviour
         switch (currentState)
         {
             case States.Guard:
-                walk.StartWalk(HelperVector.NewPointFromRange(attackTarget.position, walk.guardDistance));
+                walk.StartWalk(HelperVector.NewPointFromRange(guardTarget.position, walk.guardDistance));
                 break;
 
             case States.Patrol:
@@ -132,11 +130,10 @@ public class AI : MonoBehaviour
         switch (currentState)
         {
             case States.Attack:
-                print("Attack");
                 attack.Attack();
                 break;
+
             case States.Shot:
-                print("Shot");
                 break;
         }
     }
@@ -168,5 +165,27 @@ public class AI : MonoBehaviour
         ChangeStage(States.Idle);
         senceOrgans.SetActive(true);
     }
+    #endregion
+
+    #region Die
+    public bool IsDead() => health.IsDead();
+
+    void Die()
+    {
+        if (isDie) return;
+
+        isDie = true;
+
+        walk.Enable(false);
+
+        EnableObject(false);
+
+        body.enabled = false;
+        Vector3 temp = transform.position;
+        temp.z += 0.1f;
+        transform.position = temp;
+    }
+
+    void DestroyObject() => Destroy(gameObject);
     #endregion
 }

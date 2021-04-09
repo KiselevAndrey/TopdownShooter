@@ -25,8 +25,9 @@ public class Health : MonoBehaviour
     [Header("Звуки получения урона")]
     [SerializeField] List<AudioClip> hitClips;
     
-    Animator _anim;
-    AudioSource _audioSource;
+    [Header("Атрибуты")]
+    [SerializeField] Animator anim;
+    [SerializeField] AudioSource audioSource;
 
     bool _isDead;
     float _currentHealth;
@@ -43,8 +44,8 @@ public class Health : MonoBehaviour
     #region Awake Start Update
     private void Awake()
     {
-        _anim = GetComponent<Animator>();
-        _audioSource = GetComponent<AudioSource>();
+        TryGetComponent(out anim);
+        TryGetComponent(out audioSource);
     }
 
     private void Start()
@@ -82,12 +83,12 @@ public class Health : MonoBehaviour
     {
         if (_isDead) return;
 
-        if (_audioSource && hitClips.Count > 0 && playSound)
+        if (audioSource && hitClips.Count > 0 && playSound)
         {
             if(Time.realtimeSinceStartup - _lastTimeHit > hitClips[_hitClipIndex].length)
             {
                 _hitClipIndex = Random.Range(0, hitClips.Count);    // новый индекс звука
-                _audioSource.PlayOneShot(hitClips[_hitClipIndex]);
+                audioSource.PlayOneShot(hitClips[_hitClipIndex]);
                 _lastTimeHit = Time.realtimeSinceStartup;
             }
         }
@@ -102,8 +103,8 @@ public class Health : MonoBehaviour
             SetActiveUI(false);
             _isDead = true;
 
-            if (_anim)
-                _anim.SetBool(AnimParam.Dead, true);
+            if (anim)
+                anim.SetBool(AnimParam.Dead, true);
             else
                 Destroy(gameObject);
         }

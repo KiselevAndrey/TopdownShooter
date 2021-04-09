@@ -22,8 +22,6 @@ public class AIWalk : MonoBehaviour
     [Header("Доп данные")]
     [SerializeField] bool shotPriority;
 
-    bool isWalking;
-
     #region Start Update
     private void Start()
     {
@@ -34,7 +32,6 @@ public class AIWalk : MonoBehaviour
     {
         if (shotPriority ? ai.shot.CanShoot() : ai.attack.CanAttack())
         {
-            isWalking = false;
             ai.anim.SetFloat(AnimParam.Speed, 0);
             ChangeState();
         }
@@ -42,16 +39,6 @@ public class AIWalk : MonoBehaviour
     #endregion
 
     #region On Enable Disable
-    private void OnEnable()
-    {
-        Enable(true);
-    }
-
-    private void OnDisable()
-    {
-        Enable(false);
-    }
-
     public void Enable(bool value)
     {
         this.enabled = value;
@@ -63,8 +50,6 @@ public class AIWalk : MonoBehaviour
     #region Walk
     public void StartWalk(Vector2 target)
     {
-        isWalking = true;
-
         ChangeEndReachedDistance();
 
         aiDestSetter.target = null;
@@ -75,8 +60,6 @@ public class AIWalk : MonoBehaviour
 
     public void StartWalk(Transform target)
     {
-        isWalking = true;
-
         ChangeEndReachedDistance();
 
         aiDestSetter.target = target;

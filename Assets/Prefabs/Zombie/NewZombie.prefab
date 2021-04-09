@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4444683552435283382}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: SenceOrgans
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,7 +51,8 @@ GameObject:
   - component: {fileID: 4044393282384139218}
   - component: {fileID: 6485824612540772703}
   - component: {fileID: 6684080819162489675}
-  m_Layer: 0
+  - component: {fileID: 4019033129723755756}
+  m_Layer: 10
   m_Name: NewZombie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -95,10 +96,12 @@ MonoBehaviour:
   startState: 1
   anim: {fileID: 6357109553318448052}
   senceOrgans: {fileID: 241253228693381269}
+  body: {fileID: 823889356710613332}
   audioSource: {fileID: 3279683349901947341}
   findTarget: []
   currentState: 0
-  target: {fileID: 0}
+  attackTarget: {fileID: 0}
+  guardTarget: {fileID: 0}
   direction: {x: 0, y: 0}
   distance: 0
   isDie: 0
@@ -139,6 +142,7 @@ MonoBehaviour:
   ai: {fileID: 4580537535975609325}
   distanceForAttack: 1
   damage: {x: 1, y: 3}
+  rate: {x: 0, y: 0}
   attackPosition: {fileID: 3771254529646810350}
   range: 0.7
   layer:
@@ -180,6 +184,8 @@ MonoBehaviour:
   fullHealthColor: {r: 0, g: 1, b: 0, a: 1}
   zeroHealthColor: {r: 1, g: 0, b: 0, a: 1}
   hitClips: []
+  anim: {fileID: 6357109553318448052}
+  audioSource: {fileID: 3279683349901947341}
 --- !u!58 &823889356710613332
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -448,6 +454,27 @@ MonoBehaviour:
   version: 1
   target: {fileID: 0}
   targetPosition: {x: 0, y: 0, z: 0}
+--- !u!50 &4019033129723755756
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4580537535975609313}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 10
+  m_AngularDrag: 10
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &6104850266778012009
 GameObject:
   m_ObjectHideFlags: 0
@@ -458,7 +485,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3771254529646810350}
   - component: {fileID: 5110415882458368739}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AttackPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -539,6 +566,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CanvasHealth
+      objectReference: {fileID: 0}
+    - target: {fileID: 2996832268464200580, guid: d508eaf9199816d40bf09fd22f958b99,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 6187685807144208350, guid: d508eaf9199816d40bf09fd22f958b99,
         type: 3}
@@ -654,6 +686,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6131691417723279126, guid: d508eaf9199816d40bf09fd22f958b99,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4140481896686558372, guid: d508eaf9199816d40bf09fd22f958b99,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 5074211896704972525, guid: d508eaf9199816d40bf09fd22f958b99,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7880570914690874315, guid: d508eaf9199816d40bf09fd22f958b99,
+        type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d508eaf9199816d40bf09fd22f958b99, type: 3}
