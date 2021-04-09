@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class AIAttack : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [Header("Скрипты")]
+    [SerializeField] AI ai;
 
-    // Update is called once per frame
-    void Update()
+    [Header("Осн переменные")]
+    public float distanceForAttack;
+    [SerializeField] Transform attackPosition;
+    [SerializeField] float range;
+    [SerializeField] LayerMask layer;
+
+    public void Attack()
     {
-        
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(attackPosition.position, range, layer);
     }
 }

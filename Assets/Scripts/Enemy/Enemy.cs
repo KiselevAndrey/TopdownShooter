@@ -81,7 +81,7 @@ public class Enemy : MonoBehaviour
                 break;
             case States.Patrol:
                 break;
-            case States.Walk:
+            case States.WalkToAttack:
                 walk.Folloving();
                 break;
             case States.Attack:

@@ -48,6 +48,9 @@ GameObject:
   - component: {fileID: 3251443476532304003}
   - component: {fileID: 6357109553318448052}
   - component: {fileID: 3279683349901947341}
+  - component: {fileID: 4044393282384139218}
+  - component: {fileID: 6485824612540772703}
+  - component: {fileID: 6684080819162489675}
   m_Layer: 0
   m_Name: NewZombie
   m_TagString: Untagged
@@ -94,8 +97,8 @@ MonoBehaviour:
   audioSource: {fileID: 3279683349901947341}
   findTarget: []
   currentState: 0
-  direction: {x: 0, y: 0}
   target: {fileID: 0}
+  direction: {x: 0, y: 0}
   distance: 0
   isDie: 0
 --- !u!114 &4580537535975609326
@@ -110,10 +113,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c369045d93379fd40b06c7ed1002f164, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ai: {fileID: 4580537535975609325}
+  aiPath: {fileID: 6485824612540772703}
+  aiDestSetter: {fileID: 6684080819162489675}
   minSpeed: 3.4
-  maxSpeed: 17.3
+  maxSpeed: 6.1
   trackingInfinityly: 0
   maxTrackingDistance: 20
+  patrolDistance: 10
+  guardDistance: 5
   shotPriority: 0
 --- !u!114 &4580537535975609327
 MonoBehaviour:
@@ -127,6 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 146325863bd06f840a5caaee417bbb61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  distance: 1
 --- !u!114 &4580537535975609312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,6 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 72d33a5a60c011847a9d2e80aab6bb3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  distance: 0
 --- !u!114 &5243189552495830851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,6 +361,85 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4044393282384139218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4580537535975609313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
+--- !u!114 &6485824612540772703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4580537535975609313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6eb1402c17e84a9282a7f0f62eb584f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 2
+  radius: 0.5
+  height: 2
+  repathRate: 0.5
+  canSearch: 1
+  canMove: 1
+  maxSpeed: 1
+  gravity: {x: 0, y: 0, z: 0}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  centerOffsetCompatibility: NaN
+  orientation: 1
+  enableRotation: 1
+  targetCompatibility: {fileID: 0}
+  maxAcceleration: -2.5
+  rotationSpeed: 360
+  slowdownDistance: 1.5
+  pickNextWaypointDist: 1
+  endReachedDistance: 1
+  alwaysDrawGizmos: 0
+  slowWhenNotFacingTarget: 0
+  whenCloseToDestination: 0
+  constrainInsideGraph: 0
+--- !u!114 &6684080819162489675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4580537535975609313}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9679e68a0f1144e79c664d9a11ca121, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  target: {fileID: 0}
+  targetPosition: {x: 0, y: 0, z: 0}
 --- !u!1001 &7956937673373740539
 PrefabInstance:
   m_ObjectHideFlags: 0

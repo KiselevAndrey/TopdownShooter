@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class AIShot : MonoBehaviour
 {
+    [Header("Дистанции")]
+    public float distance;
+
     // Start is called before the first frame update
     void Start()
     {
