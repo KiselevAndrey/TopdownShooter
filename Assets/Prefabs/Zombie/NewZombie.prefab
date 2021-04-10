@@ -131,7 +131,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ff632bf87b19b614fab52c26c9dc17c8, type: 3}
   whoToTell:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   currentState: 0
   attackTarget: {fileID: 0}
   guardTarget: {fileID: 0}
@@ -180,7 +180,7 @@ MonoBehaviour:
   range: 0.7
   layer:
     serializedVersion: 2
-    m_Bits: 20736
+    m_Bits: 2117888
 --- !u!114 &4580537535975609312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,8 +330,8 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 50
+  MinDistance: 3
+  MaxDistance: 30
   Pan2D: 0
   rolloffMode: 0
   BypassEffects: 0
@@ -375,7 +375,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.5
+      value: 0.75
       inSlope: 0
       outSlope: 0
       tangentMode: 0

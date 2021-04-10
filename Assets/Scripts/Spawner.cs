@@ -8,6 +8,18 @@ public class Spawner : MonoBehaviour
     [SerializeField] protected int count;
     [SerializeField] protected float range;
 
+    [Header("Побочные данные")]
+    [SerializeField] bool drawGizmo;
+    [SerializeField] Color gizmoColor = Color.yellow;
+
+    private void OnDrawGizmosSelected()
+    {
+        if (!drawGizmo) return;
+
+        Gizmos.color = gizmoColor;
+        Gizmos.DrawWireSphere(transform.position, range);
+    }
+
     private void OnEnable()
     {
         StartCoroutine(Spawn());

@@ -172,8 +172,8 @@ public class AI : MonoBehaviour
         if (playSound && findTarget.Count > 0 && Random.value > 0.5f)
             audioSource.PlayOneShot(findTarget[Random.Range(0, findTarget.Count)]);
 
-        // trackingInfinityly
-        walk.trackingInfinityly = trackingInfinityly;
+        // trackingInfinityly не должен слетать если изначально установлено всегда преследовать
+        walk.trackingInfinityly = trackingInfinityly || walk.trackingInfinityly;
 
         // tellSomeone
         if (!tellSomeone) return;
