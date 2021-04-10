@@ -47,10 +47,10 @@ MonoBehaviour:
   type: 0
   rayCastLayers:
     serializedVersion: 2
-    m_Bits: 20736
+    m_Bits: 2117888
   findingLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 2097408
   chanceToDiscover: 50
   range: 10
   secondsForNextFinding: 0.5

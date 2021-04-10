@@ -77,7 +77,7 @@ public class Gun : MonoBehaviour
 
             gunPos.up = tempDirection;
 
-            Bullet bullet = Instantiate(gunSO.bulletPrefab, gunPos.position, gunPos.rotation).GetComponent<Bullet>();
+            Bullet bullet = Lean.Pool.LeanPool.Spawn(gunSO.bulletPrefab, gunPos.position, gunPos.rotation).GetComponent<Bullet>();
             bullet.damage = UnityEngine.Random.Range(minDamage, maxDamage);
             bullet.speed = gunSO.bulletSpeed;
             bullet.SetLifeTime(gunSO.bulletLifeTime * UnityEngine.Random.Range(.9f, 1.1f));

@@ -14,39 +14,39 @@ public class Bullet : MonoBehaviour
     #region Awake
     void Awake()
     {
-        _rb = GetComponent<Rigidbody2D>();   
+        _rb = GetComponent<Rigidbody2D>();
     }
     #endregion
 
     #region OnEnable OnBecameInvisible
     private void OnEnable()
     {
-        _rb.velocity = transform.up * speed;        
+        _rb.velocity = transform.up * speed;
+        _isDead = false;
     }
 
     private void OnBecameInvisible()
     {
-        Destroy(gameObject);
+        Dead();
     }
     #endregion
 
-    #region HitSelf
+    #region Dead & HitSelf
     void Dead()
     {
         if (_isDead) return;
 
         _isDead = true;
-        Destroy(gameObject);
+        Lean.Pool.LeanPool.Despawn(gameObject);
     }
 
-    public void GetHitSelf(int damage = 1)
+    void HitSelf(int damage = 1)
     {
         life -= damage;
 
         if (life <= 0)
             Dead();
     }
-
     #endregion
 
     #region LifeTime
@@ -68,11 +68,13 @@ public class Bullet : MonoBehaviour
     {
         if (_isDead) return;
 
-        GetHitSelf();
-        Health health = collision.gameObject.GetComponent<Health>();
-        if (health)
+        // сколько колизий сможет обработать за один кадр
+        HitSelf();
+
+        if (collision.gameObject.TryGetComponent(out Health health))
             health.Hit(damage);
 
+        // в любом случае после соприкосновения уничтожаем
         Dead();
     }
     #endregion
