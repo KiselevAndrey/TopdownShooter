@@ -158,7 +158,9 @@ public class AI : MonoBehaviour
     #endregion
 
     #region Target
-    void SetTargetParam()
+    public Transform GetAttackTarget() => attackTarget;
+
+    void UpdateTargetParam()
     {
         direction = attackTarget.position - transform.position;
         distance = direction.magnitude;
@@ -204,13 +206,8 @@ public class AI : MonoBehaviour
 
     void Die()
     {
-        if (isDie) return;
-
-        isDie = true;
-
-        EnableObject(false);
-
         attackTarget = null;
+        EnableObject(false);
 
         Vector3 temp = transform.position;
         temp.z += 0.1f;
