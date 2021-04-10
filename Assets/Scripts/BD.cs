@@ -84,7 +84,7 @@ public static class HelperVector
 #endregion
 
 
-#region Strings Classes
+#region Strings Name Classes
 public static class AxesNames
 {
     public static string Horizontal = "Horizontal";
@@ -99,6 +99,7 @@ public static class TagsNames
     public const string Bonus = "Bonus";
     public const string Bullet = "Bullet";
     public const string Weapon = "Weapon";
+    public const string Zombie = "Zombie";
 }
 
 public static class MixerGroup
