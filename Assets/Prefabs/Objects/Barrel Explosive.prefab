@@ -158,7 +158,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDamage: 100
-  explosionForce: 30000
+  explosionForce: 10000
   explosionRadius: 5
   preparationParticles: {fileID: 387406319627548914}
   explosionParticles: {fileID: 379703863228647666}
@@ -187,6 +187,9 @@ MonoBehaviour:
   zeroHealthColor: {r: 1, g: 0, b: 0, a: 1}
   hitClips:
   - {fileID: 8300000, guid: cc0c59c4968e77d459557cba43fdd790, type: 3}
+  deathClips: []
+  anim: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!82 &2892519251812291617
 AudioSource:
   m_ObjectHideFlags: 0

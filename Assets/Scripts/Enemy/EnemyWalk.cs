@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using Pathfinding;
 
 // набор скорости и торможение
 // скорость разворота
@@ -8,7 +9,7 @@ public class EnemyWalk : MonoBehaviour
     [Header("Скорости")]
     [SerializeField, Range(0, 10)] float minSpeed;
     [SerializeField, Range(0, 10)] float maxSpeed;
-
+    
     [Header("Дистанции")]
     public float maxTrackingDistance;
 

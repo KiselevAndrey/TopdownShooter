@@ -262,6 +262,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7de609229e676cd46a414ae42701fb50, type: 3}
   - {fileID: 8300000, guid: 0c48482267378c04eb0ea5ff5bba69f3, type: 3}
   - {fileID: 8300000, guid: a1d446125db95cf41aee84e642cb5c99, type: 3}
+  deathClips: []
+  anim: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!82 &7060506174642144603
 AudioSource:
   m_ObjectHideFlags: 0
@@ -456,7 +459,7 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 2.56, y: 2.56}
     newSize: {x: 2.56, y: 2.56}
     adaptiveTilingThreshold: 0.5
@@ -557,10 +560,10 @@ MonoBehaviour:
   enemy: {fileID: 8457369024374193100}
   rayCastLayers:
     serializedVersion: 2
-    m_Bits: 20736
+    m_Bits: 2117888
   findingLayers:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 2097408
   chanceToDiscover: 50
   range: 10
   updaterCount: 30

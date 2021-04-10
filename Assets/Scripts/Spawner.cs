@@ -8,6 +8,18 @@ public class Spawner : MonoBehaviour
     [SerializeField] protected int count;
     [SerializeField] protected float range;
 
+    [Header("Побочные данные")]
+    [SerializeField] bool drawGizmo;
+    [SerializeField] Color gizmoColor = Color.yellow;
+
+    private void OnDrawGizmosSelected()
+    {
+        if (!drawGizmo) return;
+
+        Gizmos.color = gizmoColor;
+        Gizmos.DrawWireSphere(transform.position, range);
+    }
+
     private void OnEnable()
     {
         StartCoroutine(Spawn());
@@ -22,7 +34,7 @@ public class Spawner : MonoBehaviour
             instatiatePos.y += (Random.value - 0.5f) * range;
 
             int j = Random.Range(0, prefabs.Count);
-            Instantiate(prefabs[j], instatiatePos, Quaternion.Euler(0, 0, Random.value * 360), transform);
+            Lean.Pool.LeanPool.Spawn(prefabs[j], instatiatePos, Quaternion.Euler(0, 0, Random.value * 360), transform);
             yield return new WaitForSeconds(0.5f);
         }
     }
