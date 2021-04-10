@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,23 +23,23 @@ public class Health : MonoBehaviour
     [SerializeField] Color fullHealthColor = Color.green;
     [SerializeField] Color zeroHealthColor = Color.red;
 
-    [Header("Звуки получения урона")]
+    [Header("Звуки")]
     [SerializeField] List<AudioClip> hitClips;
-    
+    [SerializeField] List<AudioClip> deathClips;
+
     [Header("Атрибуты")]
     [SerializeField] Animator anim;
     [SerializeField] AudioSource audioSource;
+
+    public static Action<string, Vector2> ImDeath;
 
     bool _isDead;
     float _currentHealth;
     float _lastTimeHit;
     int _hitClipIndex;
-
     #region Переменные для прятания UI
     bool _isVisible;
     float _visibleTime;
-    //float _bgAlpha;
-    //float _fillAlpha;
     #endregion
 
     #region Awake Start Update
@@ -50,7 +51,7 @@ public class Health : MonoBehaviour
 
     private void Start()
     {
-        startingHealth += Random.Range(0, possibleAdditionalHealth);
+        startingHealth += UnityEngine.Random.Range(0, possibleAdditionalHealth);
 
         _currentHealth = startingHealth;
         slider.maxValue = startingHealth;
@@ -59,8 +60,6 @@ public class Health : MonoBehaviour
 
         if (hideUI)
         {
-            //_bgAlpha = backgroundImage.color.a;
-            //_fillAlpha = fillImage.color.a;
             SetActiveUI(false);
         }
     }
@@ -87,7 +86,7 @@ public class Health : MonoBehaviour
         {
             if(Time.realtimeSinceStartup - _lastTimeHit > hitClips[_hitClipIndex].length)
             {
-                _hitClipIndex = Random.Range(0, hitClips.Count);    // новый индекс звука
+                _hitClipIndex = UnityEngine.Random.Range(0, hitClips.Count);    // новый индекс звука
                 audioSource.PlayOneShot(hitClips[_hitClipIndex]);
                 _lastTimeHit = Time.realtimeSinceStartup;
             }
@@ -98,28 +97,36 @@ public class Health : MonoBehaviour
         _currentHealth -= damage;
 
         if (_currentHealth <= 0)
-        {
-            _currentHealth = 0;
-            SetActiveUI(false);
-            _isDead = true;
-
-            if (anim)
-                anim.SetBool(AnimParam.Dead, true);
-            else
-                Destroy(gameObject);
-        }
+            Death(playSound);
 
         SetHealthUI();
     }
 
-    public bool IsDead() => _isDead;
-    #endregion
-
-    private void SetHealthUI()
+    void SetHealthUI()
     {
         slider.value = _currentHealth;
         fillImage.color = Color.Lerp(zeroHealthColor, fullHealthColor, _currentHealth / startingHealth);
     }
+    #endregion
+
+    #region Death
+    public bool IsDead() => _isDead;
+
+    void Death(bool playSound)
+    {
+        _currentHealth = 0;
+        SetActiveUI(false);
+        _isDead = true;
+
+        if (audioSource && deathClips.Count > 0 && playSound)
+            audioSource.PlayOneShot(deathClips[UnityEngine.Random.Range(0, deathClips.Count)]);
+
+        if (anim)
+            anim.SetBool(AnimParam.Dead, true);
+        else
+            Destroy(gameObject);
+    }
+    #endregion
 
     #region HideUI
     void SetActiveUI(bool value)
@@ -127,25 +134,6 @@ public class Health : MonoBehaviour
         if (!UIHealth) return;
         _isVisible = value;
         UIHealth.SetActive(value);
-        //if (value)
-        //{
-        //    SetAlpha(backgroundImage, _bgAlpha);
-        //    SetAlpha(fillImage, _fillAlpha);
-        //}
-        //else
-        //{
-        //    SetAlpha(backgroundImage, 0);
-        //    SetAlpha(fillImage, 0);
-        //}
-    }
-
-    void SetAlpha(Image image, float newAlpha)
-    {
-        if (!image) return;
-
-        Color temp = image.color;
-        temp.a = newAlpha;
-        image.color = temp;
     }
     #endregion
 }

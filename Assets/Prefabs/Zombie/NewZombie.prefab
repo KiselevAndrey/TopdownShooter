@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4444683552435283382}
+  - component: {fileID: 9019917962583699680}
   m_Layer: 10
   m_Name: SenceOrgans
   m_TagString: Untagged
@@ -30,6 +31,32 @@ Transform:
   m_Father: {fileID: 4580537535975609324}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9019917962583699680
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 241253228693381269}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e118023974202642ba517e97dcbf673, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ai: {fileID: 4580537535975609325}
+  type: 0
+  rayCastLayers:
+    serializedVersion: 2
+    m_Bits: 20736
+  findingLayers:
+    serializedVersion: 2
+    m_Bits: 256
+  chanceToDiscover: 50
+  range: 10
+  secondsForNextFinding: 0.5
+  trowRayCast: 1
+  drawGizmo: 1
+  gizmoColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1 &4580537535975609313
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,7 +125,13 @@ MonoBehaviour:
   senceOrgans: {fileID: 241253228693381269}
   body: {fileID: 823889356710613332}
   audioSource: {fileID: 3279683349901947341}
-  findTarget: []
+  findTarget:
+  - {fileID: 8300000, guid: b381e13615e873147a47f0b2c543b650, type: 3}
+  - {fileID: 8300000, guid: 0569e7a7aafca064a9fd24e39a2c1db3, type: 3}
+  - {fileID: 8300000, guid: ff632bf87b19b614fab52c26c9dc17c8, type: 3}
+  whoToTell:
+    serializedVersion: 2
+    m_Bits: 0
   currentState: 0
   attackTarget: {fileID: 0}
   guardTarget: {fileID: 0}
@@ -184,6 +217,10 @@ MonoBehaviour:
   fullHealthColor: {r: 0, g: 1, b: 0, a: 1}
   zeroHealthColor: {r: 1, g: 0, b: 0, a: 1}
   hitClips: []
+  deathClips:
+  - {fileID: 8300000, guid: 7de609229e676cd46a414ae42701fb50, type: 3}
+  - {fileID: 8300000, guid: 0c48482267378c04eb0ea5ff5bba69f3, type: 3}
+  - {fileID: 8300000, guid: a1d446125db95cf41aee84e642cb5c99, type: 3}
   anim: {fileID: 6357109553318448052}
   audioSource: {fileID: 3279683349901947341}
 --- !u!58 &823889356710613332

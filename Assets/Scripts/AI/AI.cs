@@ -25,8 +25,10 @@ public class AI : MonoBehaviour
     [SerializeField] AudioSource audioSource;
     [SerializeField] List<AudioClip> findTarget;
 
-    public States currentState;
-    public Transform attackTarget;
+    [Header("Доп данные")]
+    [SerializeField] LayerMask whoToTell;
+    [HideInInspector] public States currentState;
+    [HideInInspector] public Transform attackTarget;
     public Transform guardTarget;
     [HideInInspector] public Vector2 direction;
     [HideInInspector] public float distance;
@@ -159,12 +161,31 @@ public class AI : MonoBehaviour
         distance = direction.magnitude;
     }
 
-    public void SetTarget(Transform target)
+    public void SetTarget(Transform target, bool playSound = false, bool trackingInfinityly = false, bool tellSomeone = false)
     {
         attackTarget = target;
+        SetTargetParam();
         ChangeStage(States.WalkToAttack);
         senceOrgans.SetActive(false);
-        SetTargetParam();
+
+        // playSound
+        if (playSound && findTarget.Count > 0 && Random.value > 0.5f)
+            audioSource.PlayOneShot(findTarget[Random.Range(0, findTarget.Count)]);
+
+        // trackingInfinityly
+        walk.trackingInfinityly = trackingInfinityly;
+
+        // tellSomeone
+        if (!tellSomeone) return;
+
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 10f, whoToTell);
+            
+        for (int i = 0; i < colliders.Length; i++)
+        {
+            if (TryGetComponent(out AI ai))
+                if (!ai.attackTarget)
+                    ai.SetTarget(target);
+        }
     }
 
     public void LoseTarget()
@@ -194,6 +215,7 @@ public class AI : MonoBehaviour
         transform.position = temp;
     }
 
+    // запускается в анимации
     void DestroyObject() => Destroy(gameObject);
     #endregion
 }

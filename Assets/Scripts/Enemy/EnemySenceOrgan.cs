@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-enum SenceOrganType { Ear, Eye, Nose }
 
 public class EnemySenceOrgan : MonoBehaviour
 {

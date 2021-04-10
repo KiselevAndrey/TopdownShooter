@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1353963622}
   - component: {fileID: 1353963623}
-  m_Layer: 8
+  m_Layer: 21
   m_Name: Auralight 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -80,7 +80,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1703966131}
   - component: {fileID: 1703966132}
-  m_Layer: 8
+  m_Layer: 21
   m_Name: Flashlight 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -252,7 +252,7 @@ GameObject:
   - component: {fileID: 8702202125423338023}
   - component: {fileID: 8702202125423338027}
   - component: {fileID: 1906499778039591349}
-  m_Layer: 8
+  m_Layer: 21
   m_Name: Player Girl
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -334,7 +334,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bd5ec90860cbec40b05bc1a2599fee4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 1000
+  startingHealth: 5
   possibleAdditionalHealth: 0
   hideUI: 1
   visibleUISec: 5
@@ -349,6 +349,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 3f1e58f8c773de441acec05afce29d8a, type: 3}
   - {fileID: 8300000, guid: 101485b9f784d9140846d4d9b998e0b6, type: 3}
   - {fileID: 8300000, guid: e1cb1933488977f4f95b2f2e47af8f5d, type: 3}
+  deathClips: []
+  anim: {fileID: 0}
+  audioSource: {fileID: 0}
 --- !u!212 &8702202125423338025
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -559,7 +562,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8702202126361472808}
-  m_Layer: 8
+  m_Layer: 0
   m_Name: First Weapon
   m_TagString: Gun
   m_Icon: {fileID: 0}
