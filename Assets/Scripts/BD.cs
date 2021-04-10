@@ -78,7 +78,6 @@ public static class HelperVector
         temp.y += (UnityEngine.Random.value - 0.5f) * range;
         temp.z += (UnityEngine.Random.value - 0.5f) * range;
 
-        Debug.Log(temp);
         return temp;
     }
 }

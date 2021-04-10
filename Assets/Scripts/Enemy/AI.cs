@@ -36,6 +36,7 @@ public class AI : MonoBehaviour
     private void Start()
     {
         ChangeStage(startState);
+        if (attackTarget) SetTargetParam();
     }
 
     private void Update()
@@ -48,8 +49,7 @@ public class AI : MonoBehaviour
 
         if (attackTarget)
         {
-            direction = attackTarget.position - transform.position;
-            distance = direction.magnitude;
+            SetTargetParam();
 
             if (distance > walk.maxTrackingDistance && !walk.trackingInfinityly)
                 LoseTarget();
@@ -72,9 +72,10 @@ public class AI : MonoBehaviour
     #region Вкл выкл скриптов
     void EnableObject(bool value)
     {
+        this.enabled = value;
         walk.Enable(value);
+        attack.Enable(value);
         shot.enabled = value;
-        attack.enabled = value;
         senceOrgans.SetActive(value);
     }
     #endregion
@@ -152,11 +153,18 @@ public class AI : MonoBehaviour
     #endregion
 
     #region Target
+    void SetTargetParam()
+    {
+        direction = attackTarget.position - transform.position;
+        distance = direction.magnitude;
+    }
+
     public void SetTarget(Transform target)
     {
         attackTarget = target;
         ChangeStage(States.WalkToAttack);
         senceOrgans.SetActive(false);
+        SetTargetParam();
     }
 
     public void LoseTarget()

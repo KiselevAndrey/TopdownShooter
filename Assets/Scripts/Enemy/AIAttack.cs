@@ -24,6 +24,12 @@ public class AIAttack : MonoBehaviour
         Gizmos.DrawWireSphere(attackPosition.position, range);
     }
 
+    public void Enable(bool value)
+    {
+        this.enabled = value;
+        attackPosition.gameObject.SetActive(value);
+    }
+
     #region Attack
     public void Attack()
     {

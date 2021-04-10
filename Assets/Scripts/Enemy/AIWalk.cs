@@ -22,6 +22,8 @@ public class AIWalk : MonoBehaviour
     [Header("Доп данные")]
     [SerializeField] bool shotPriority;
 
+    bool _walking = true;
+
     #region Start Update
     private void Start()
     {
@@ -30,10 +32,24 @@ public class AIWalk : MonoBehaviour
 
     private void Update()
     {
-        if (shotPriority ? ai.shot.CanShoot() : ai.attack.CanAttack())
+        switch (ai.currentState)
         {
-            ai.anim.SetFloat(AnimParam.Speed, 0);
-            ChangeState();
+            case States.Guard:
+            case States.Patrol:
+                if(aiPath.velocity.magnitude == 0 && _walking)
+                {
+                    _walking = false;
+                    ai.anim.SetFloat(AnimParam.Speed, 0);
+                    ChangeState();
+                }
+                break;
+            case States.WalkToAttack:
+                if (shotPriority ? ai.shot.CanShoot() : ai.attack.CanAttack())
+                {
+                    ai.anim.SetFloat(AnimParam.Speed, 0);
+                    ChangeState();
+                }
+                break;
         }
     }
     #endregion
@@ -48,26 +64,30 @@ public class AIWalk : MonoBehaviour
     #endregion
 
     #region Walk
-    public void StartWalk(Vector2 target)
+    void StartWalk()
     {
+        _walking = true;
+
         ChangeEndReachedDistance();
 
+        ai.anim.SetFloat(AnimParam.Speed, 1);
+    }
+    public void StartWalk(Vector2 target)
+    {
         aiDestSetter.target = null;
         aiDestSetter.targetPosition = target;
 
-        ai.anim.SetFloat(AnimParam.Speed, 1);
+        StartWalk();
     }
 
     public void StartWalk(Transform target)
     {
-        ChangeEndReachedDistance();
-
         aiDestSetter.target = target;
 
-        ai.anim.SetFloat(AnimParam.Speed, 1);
+        StartWalk();
     }
 
-    // изменяю расстояние до остановки от игрока
+    // изменяю расстояние до остановки от конечной точки
     void ChangeEndReachedDistance()
     {
         switch (ai.currentState)
