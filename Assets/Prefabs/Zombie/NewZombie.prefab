@@ -216,7 +216,10 @@ MonoBehaviour:
   fillImage: {fileID: 8775153227555009235}
   fullHealthColor: {r: 0, g: 1, b: 0, a: 1}
   zeroHealthColor: {r: 1, g: 0, b: 0, a: 1}
-  hitClips: []
+  hitClips:
+  - {fileID: 8300000, guid: 4bafbba70c3819b4a9de75f39bef3ca5, type: 3}
+  - {fileID: 8300000, guid: 0974dc97ce6ab18418ecf291bbcc89cc, type: 3}
+  - {fileID: 8300000, guid: dc4514e9db8ecd04ab661a64655def39, type: 3}
   deathClips:
   - {fileID: 8300000, guid: 7de609229e676cd46a414ae42701fb50, type: 3}
   - {fileID: 8300000, guid: 0c48482267378c04eb0ea5ff5bba69f3, type: 3}

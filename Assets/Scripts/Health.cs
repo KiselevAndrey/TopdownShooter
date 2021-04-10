@@ -114,7 +114,7 @@ public class Health : MonoBehaviour
 
     void Death(bool playSound)
     {
-        ImDeath(gameObject.tag, transform.position);
+        ImDeath?.Invoke(gameObject.tag, transform.position);
 
         _currentHealth = 0;
         SetActiveUI(false);
