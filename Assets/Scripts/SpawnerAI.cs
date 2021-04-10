@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-public class SpawnerEnemy : Spawner
+public class SpawnerAI : Spawner
 {
     [Header("Доп параметры для зомби")]
     [SerializeField] Transform target;
@@ -23,9 +23,9 @@ public class SpawnerEnemy : Spawner
 
             int j = Random.Range(0, prefabs.Count);
 
-            Enemy enemy = Lean.Pool.LeanPool.Spawn(prefabs[j], instatiatePos, Quaternion.Euler(0, 0, Random.value * 360), transform).GetComponent<Enemy>();
+            AI ai = Lean.Pool.LeanPool.Spawn(prefabs[j], instatiatePos, Quaternion.Euler(0, 0, Random.value * 360), transform).GetComponent<AI>();
 
-            enemy.SetTarget(target, outMaxDistance: true, fromSpawner: true);
+            ai.SetTarget(target, trackingInfinityly: true);
 
             yield return new WaitForSeconds(0.5f);
         }
