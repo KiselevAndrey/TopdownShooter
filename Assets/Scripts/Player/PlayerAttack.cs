@@ -9,7 +9,6 @@ public class PlayerAttack : MonoBehaviour
 
     [Header("Arm")]
     [SerializeField] Transform armPos;
-    [SerializeField] ArmAttack armAttack;
     [SerializeField, Range(0, 10)] float armDamage;
     [SerializeField, Range(0, 3)] float armRate;
 
@@ -76,7 +75,7 @@ public class PlayerAttack : MonoBehaviour
     #region Arm
     void AttackArm()
     {
-        armAttack.Attack(armDamage * Random.Range(0.9f, 1.1f));
+        //armAttack.Attack(armDamage * Random.Range(0.9f, 1.1f));
     }
 
     IEnumerator AttackRate()

@@ -40,7 +40,7 @@ public class Bullet : MonoBehaviour
         Lean.Pool.LeanPool.Despawn(gameObject);
     }
 
-    void HitSelf(int damage = 1)
+    public void HitSelf(int damage = 1)
     {
         life -= damage;
 
@@ -64,7 +64,7 @@ public class Bullet : MonoBehaviour
     #endregion
 
     #region OnCollision
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (_isDead) return;
 
@@ -72,10 +72,12 @@ public class Bullet : MonoBehaviour
         HitSelf();
 
         if (collision.gameObject.TryGetComponent(out Health health))
+        {
             health.Hit(damage);
+        }
 
         // в любом случае после соприкосновения уничтожаем
-        Dead();
+        //Dead();
     }
     #endregion
 }

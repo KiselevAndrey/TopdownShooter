@@ -23,7 +23,7 @@ public class SpawnerEnemy : Spawner
 
             int j = Random.Range(0, prefabs.Count);
 
-            Enemy enemy = Instantiate(prefabs[j], instatiatePos, Quaternion.Euler(0, 0, Random.value * 360), transform).GetComponent<Enemy>();
+            Enemy enemy = Lean.Pool.LeanPool.Spawn(prefabs[j], instatiatePos, Quaternion.Euler(0, 0, Random.value * 360), transform).GetComponent<Enemy>();
 
             enemy.SetTarget(target, outMaxDistance: true, fromSpawner: true);
 

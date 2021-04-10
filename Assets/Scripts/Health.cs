@@ -49,12 +49,12 @@ public class Health : MonoBehaviour
         TryGetComponent(out audioSource);
     }
 
-    private void Start()
+    private void OnEnable()
     {
-        startingHealth += UnityEngine.Random.Range(0, possibleAdditionalHealth);
+        _isDead = false;
 
-        _currentHealth = startingHealth;
-        slider.maxValue = startingHealth;
+        _currentHealth = startingHealth + UnityEngine.Random.Range(0, possibleAdditionalHealth); ;
+        slider.maxValue = _currentHealth;
 
         SetHealthUI();
 
@@ -126,7 +126,7 @@ public class Health : MonoBehaviour
         if (anim)
             anim.SetBool(AnimParam.Dead, true);
         else
-            Destroy(gameObject);
+            Lean.Pool.LeanPool.Despawn(gameObject);
     }
     #endregion
 

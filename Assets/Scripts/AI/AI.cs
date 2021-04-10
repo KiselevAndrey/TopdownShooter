@@ -27,18 +27,21 @@ public class AI : MonoBehaviour
 
     [Header("Доп данные")]
     [SerializeField] LayerMask whoToTell;
-    [HideInInspector] public States currentState;
-    [HideInInspector] public Transform attackTarget;
     public Transform guardTarget;
+    
+    [Header("Проверочные данные")]
+    public States currentState;
+    public Transform attackTarget;
     [HideInInspector] public Vector2 direction;
-    [HideInInspector] public float distance;
-    [HideInInspector] public bool isDie;
+    public float distance;
+    public bool isDie;
 
     #region Start Update
-    private void Start()
+    private void OnEnable()
     {
+        EnableObject(true);
         ChangeStage(startState);
-        if (attackTarget) SetTargetParam();
+        isDie = false;
     }
 
     private void Update()
@@ -79,6 +82,7 @@ public class AI : MonoBehaviour
         attack.Enable(value);
         shot.enabled = value;
         senceOrgans.SetActive(value);
+        body.enabled = value;
     }
     #endregion
 
@@ -205,17 +209,16 @@ public class AI : MonoBehaviour
 
         isDie = true;
 
-        walk.Enable(false);
-
         EnableObject(false);
 
-        body.enabled = false;
+        attackTarget = null;
+
         Vector3 temp = transform.position;
         temp.z += 0.1f;
         transform.position = temp;
     }
 
     // запускается в анимации
-    void DestroyObject() => Destroy(gameObject);
+    void DestroyObject() => Lean.Pool.LeanPool.Despawn(gameObject);
     #endregion
 }

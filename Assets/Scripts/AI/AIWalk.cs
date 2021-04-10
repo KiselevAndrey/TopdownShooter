@@ -22,12 +22,13 @@ public class AIWalk : MonoBehaviour
     [Header("Доп данные")]
     [SerializeField] bool shotPriority;
 
-    bool _walking = true;
+    bool _walking;
 
-    #region Start Update
-    private void Start()
+    #region OnEnable Update
+    private void OnEnable()
     {
         aiPath.maxSpeed = Random.Range(minSpeed, maxSpeed);
+        _walking = true;
     }
 
     private void Update()
