@@ -114,11 +114,17 @@ public class AIWalk : MonoBehaviour
         switch (ai.currentState)
         {
             case States.Guard:
-                StartCoroutine(ChangeStageButWaitNow(States.Guard, States.Guard, 5f));
+                if (ai.guardTarget)
+                    StartCoroutine(ChangeStageButWaitNow(States.Guard, States.Guard, 5f));
+                else
+                    ai.ChangeStage(States.Idle);
                 break;
 
             case States.Patrol:
-                StartCoroutine(ChangeStageButWaitNow(States.Patrol, States.Patrol, 5f));
+                if(HelperBool.RandomBool())
+                    StartCoroutine(ChangeStageButWaitNow(States.Patrol, States.Patrol, 5f));
+                else
+                    ai.ChangeStage(States.Idle);
                 break;
 
             case States.WalkToAttack:

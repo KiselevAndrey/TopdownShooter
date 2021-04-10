@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 4580537535975609313, guid: 23135d29c74fc3d48ad00115290c097b,
         type: 3}
       propertyPath: m_Name
-      value: NewZombie 1-1
+      value: Zombie 1-1
       objectReference: {fileID: 0}
     - target: {fileID: 4580537535975609325, guid: 23135d29c74fc3d48ad00115290c097b,
         type: 3}
@@ -43,6 +43,21 @@ PrefabInstance:
       value: "\u041C\u0435\u0434\u043B\u0435\u043D\u043D\u044B\u0439 \u0438 \u0441\u043B\u0430\u0431\u044B\u0439\n\u0417\u0434\u043E\u0440\u043E\u0432\u044C\u0435
         \u043D\u043E\u0440\u043C\u0430\u043B\u044C\u043D\u043E\u0435\n\u041D\u0435
         \u043F\u043B\u044E\u0435\u0442\u0441\u044F"
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580537535975609325, guid: 23135d29c74fc3d48ad00115290c097b,
+        type: 3}
+      propertyPath: chanceToBecomeDefender
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580537535975609325, guid: 23135d29c74fc3d48ad00115290c097b,
+        type: 3}
+      propertyPath: chanceToBeDefender
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4580537535975609325, guid: 23135d29c74fc3d48ad00115290c097b,
+        type: 3}
+      propertyPath: myAliance.m_Bits
+      value: 1024
       objectReference: {fileID: 0}
     - target: {fileID: 4580537535975609324, guid: 23135d29c74fc3d48ad00115290c097b,
         type: 3}

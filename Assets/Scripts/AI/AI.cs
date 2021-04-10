@@ -26,7 +26,8 @@ public class AI : MonoBehaviour
     [SerializeField] List<AudioClip> findTarget;
 
     [Header("Доп данные")]
-    [SerializeField] LayerMask whoToTell;
+    [SerializeField] LayerMask myAliance;
+    [SerializeField, Range(0, 100)] float chanceToBeDefender;
     public Transform guardTarget;
     
     [Header("Проверочные данные")]
@@ -35,7 +36,7 @@ public class AI : MonoBehaviour
     [HideInInspector] public Vector2 direction;
     public float distance;
 
-    #region Start Update
+    #region OnEnable Update
     private void OnEnable()
     {
         EnableObject(true);
@@ -104,6 +105,26 @@ public class AI : MonoBehaviour
                 break;
 
             case States.Idle:
+                if (!attackTarget && !guardTarget && HelperBool.RandomBoolPercent(chanceToBeDefender))
+                {
+                    Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, walk.guardDistance, myAliance);
+                    for (int i = 1; i < colliders.Length; i++)
+                    {
+                        if (colliders[i].TryGetComponent(out AI ai))
+                        {
+                            if (ai.guardTarget)
+                            {
+                                guardTarget = ai.guardTarget;
+                                break;
+                            }
+                            else
+                            {
+                                guardTarget = ai.transform;
+                                break;
+                            }
+                        }
+                    }
+                }
                 Idle();
                 break;
         }
@@ -183,7 +204,7 @@ public class AI : MonoBehaviour
         // tellSomeone
         if (!tellSomeone) return;
 
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 10f, whoToTell);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, 10f, myAliance);
             
         for (int i = 0; i < colliders.Length; i++)
         {
