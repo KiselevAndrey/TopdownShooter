@@ -60,7 +60,7 @@ public class AIAttack : MonoBehaviour
             if (col.TryGetComponent<Health>(out Health health))
             {
                 health.Hit(Random.Range(damage.x, damage.y));
-                if (health.IsDead() && health.transform == ai.attackTarget)
+                if (health.IsDead() && health.transform == ai.GetAttackTarget())
                     ai.LoseTarget();
             }
         }

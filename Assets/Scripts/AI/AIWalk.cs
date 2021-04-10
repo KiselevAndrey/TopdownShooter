@@ -44,6 +44,7 @@ public class AIWalk : MonoBehaviour
                     ChangeState();
                 }
                 break;
+
             case States.WalkToAttack:
                 if (shotPriority ? ai.shot.CanShoot() : ai.attack.CanAttack())
                 {
@@ -96,9 +97,11 @@ public class AIWalk : MonoBehaviour
             case States.Guard:
                 aiPath.endReachedDistance = 0.1f;
                 break;
+
             case States.Patrol:
                 aiPath.endReachedDistance = 0.1f;
                 break;
+
             case States.WalkToAttack:
                 aiPath.endReachedDistance = (shotPriority ? ai.shot.distance : ai.attack.distanceForAttack) * Random.Range(0.9f, 1.1f);
                 break;
@@ -113,11 +116,20 @@ public class AIWalk : MonoBehaviour
             case States.Guard:
                 StartCoroutine(ChangeStageButWaitNow(States.Guard, States.Guard, 5f));
                 break;
+
             case States.Patrol:
                 StartCoroutine(ChangeStageButWaitNow(States.Patrol, States.Patrol, 5f));
                 break;
+
             case States.WalkToAttack:
-                ai.ChangeStage(shotPriority ? States.Shot : States.Attack);
+                if (shotPriority && ai.shot.CanShoot())
+                {
+                    ai.ChangeStage(States.Shot);
+                }
+                else if (ai.attack.CanAttack())
+                    ai.ChangeStage(States.Attack);
+                else
+                    ai.ChangeStage(States.WalkToAttack);
                 break;
         }
     }

@@ -27,7 +27,7 @@ public class SpawnerAI : Spawner
 
             ai.SetTarget(target, trackingInfinityly: true);
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(rateSpawn);
         }
     }
 }

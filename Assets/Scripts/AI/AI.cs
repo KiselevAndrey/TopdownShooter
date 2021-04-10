@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 
 public enum States { Guard, Patrol, WalkToAttack, Attack, Shot, Idle }
@@ -31,30 +31,22 @@ public class AI : MonoBehaviour
     
     [Header("Проверочные данные")]
     public States currentState;
-    public Transform attackTarget;
+    [SerializeField] Transform attackTarget;
     [HideInInspector] public Vector2 direction;
     public float distance;
-    public bool isDie;
 
     #region Start Update
     private void OnEnable()
     {
         EnableObject(true);
         ChangeStage(startState);
-        isDie = false;
     }
 
     private void Update()
     {
-        if(IsDead())
-        {
-            Die();
-            return;
-        }
-
         if (attackTarget)
         {
-            SetTargetParam();
+            UpdateTargetParam();
 
             if (distance > walk.maxTrackingDistance && !walk.trackingInfinityly)
                 LoseTarget();
@@ -65,7 +57,7 @@ public class AI : MonoBehaviour
     #region OnBecame Visible/Invisible
     private void OnBecameVisible()
     {
-        EnableObject(true);
+        EnableObject(true); 
     }
 
     private void OnBecameInvisible()
@@ -77,11 +69,18 @@ public class AI : MonoBehaviour
     #region Вкл выкл скриптов
     void EnableObject(bool value)
     {
-        this.enabled = value;
-        walk.Enable(value);
+        if (!walk.trackingInfinityly || !attackTarget)
+        {
+            this.enabled = value;
+            walk.Enable(value);
+        }
+
         attack.Enable(value);
         shot.enabled = value;
-        senceOrgans.SetActive(value);
+
+        if(!attackTarget || !value)
+            senceOrgans.SetActive(value);
+
         body.enabled = value;
     }
     #endregion
@@ -168,7 +167,7 @@ public class AI : MonoBehaviour
     public void SetTarget(Transform target, bool playSound = false, bool trackingInfinityly = false, bool tellSomeone = false)
     {
         attackTarget = target;
-        SetTargetParam();
+        UpdateTargetParam();
         ChangeStage(States.WalkToAttack);
         senceOrgans.SetActive(false);
 

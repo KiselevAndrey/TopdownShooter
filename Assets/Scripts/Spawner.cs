@@ -7,6 +7,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] protected List<GameObject> prefabs;
     [SerializeField] protected int count;
     [SerializeField] protected float range;
+    [SerializeField] protected float rateSpawn = 0.5f;
 
     [Header("Побочные данные")]
     [SerializeField] bool drawGizmo;
@@ -35,7 +36,7 @@ public class Spawner : MonoBehaviour
 
             int j = Random.Range(0, prefabs.Count);
             Lean.Pool.LeanPool.Spawn(prefabs[j], instatiatePos, Quaternion.Euler(0, 0, Random.value * 360), transform);
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(rateSpawn);
         }
     }
 }
