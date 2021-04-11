@@ -67,11 +67,11 @@ public class Gun : MonoBehaviour
     {
         for (int i = 0; i < gunSO.bulletPerShot; i++)
         {
-            Vector3 tempCrosshairPos = crosshairPos.position;
+            Vector2 tempCrosshairPos = crosshairPos.position;
             tempCrosshairPos.x += (UnityEngine.Random.value - .5f) * gunSO.spreadRadius;
             tempCrosshairPos.y += (UnityEngine.Random.value - .5f) * gunSO.spreadRadius;
 
-            Vector2 tempDirection = tempCrosshairPos - gunPos.position; 
+            Vector2 tempDirection = tempCrosshairPos - (Vector2)gunPos.position; 
 
             gunPos.up = tempDirection;
 
@@ -171,8 +171,6 @@ public class Gun : MonoBehaviour
     void Pick(bool up)
     {
         anim.SetBool(AnimParam.PickUp, up);
-        //sprites.SetActive(!up);
-        //bodyCollider.enabled = !up;
     }
 
     // отправляет рассылку UI, если он подписан
