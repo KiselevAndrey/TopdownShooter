@@ -13,9 +13,6 @@ public class AI : MonoBehaviour
     public AIAttack attack;
     [SerializeField] Health health;
 
-    [Header("Осн переменные")]
-    [SerializeField] States startState;
-
     [Header("Основные объекты")]
     public Animator anim;
     [SerializeField] GameObject senceOrgans;
@@ -40,7 +37,8 @@ public class AI : MonoBehaviour
     private void OnEnable()
     {
         EnableObject(true);
-        ChangeStage(startState);
+        ChangeStage(States.Idle);
+        body.enabled = true;
     }
 
     private void Update()
@@ -58,31 +56,27 @@ public class AI : MonoBehaviour
     #region OnBecame Visible/Invisible
     private void OnBecameVisible()
     {
+        this.enabled = true;
         EnableObject(true); 
     }
 
     private void OnBecameInvisible()
     {
+        this.enabled = false;
         EnableObject(false);
+
+        if (walk.trackingInfinityly && attackTarget)
+            walk.Enable(true);
     }
     #endregion
 
     #region Вкл выкл скриптов
     void EnableObject(bool value)
     {
-        if (!walk.trackingInfinityly || !attackTarget)
-        {
-            this.enabled = value;
-            walk.Enable(value);
-        }
-
+        walk.Enable(value);
         attack.Enable(value);
         shot.enabled = value;
-
-        if(!attackTarget || !value)
-            senceOrgans.SetActive(value);
-
-        body.enabled = value;
+        senceOrgans.SetActive(value);
     }
     #endregion
 
@@ -223,12 +217,12 @@ public class AI : MonoBehaviour
     #endregion
 
     #region Die
-    public bool IsDead() => health.IsDead();
-
+    // запускается в анимации
     void Die()
     {
         attackTarget = null;
         EnableObject(false);
+        body.enabled = false;
 
         Vector3 temp = transform.position;
         temp.z += 0.1f;

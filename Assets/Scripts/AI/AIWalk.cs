@@ -109,22 +109,17 @@ public class AIWalk : MonoBehaviour
     }
     #endregion
 
+    #region ChangeStage
     void ChangeState()
     {
         switch (ai.currentState)
         {
             case States.Guard:
-                if (ai.guardTarget)
-                    StartCoroutine(ChangeStageButWaitNow(States.Guard, States.Guard, 5f));
-                else
-                    ai.ChangeStage(States.Idle);
+                StartCoroutine(ChangeStageButWaitNow(States.Guard, States.Idle, 5f));
                 break;
 
             case States.Patrol:
-                if(HelperBool.RandomBool())
-                    StartCoroutine(ChangeStageButWaitNow(States.Patrol, States.Patrol, 5f));
-                else
-                    ai.ChangeStage(States.Idle);
+                StartCoroutine(ChangeStageButWaitNow(States.Patrol, States.Idle, 5f));
                 break;
 
             case States.WalkToAttack:
@@ -146,4 +141,5 @@ public class AIWalk : MonoBehaviour
         if (ai.currentState == currentState)
             ai.ChangeStage(newState);
     }
+    #endregion
 }

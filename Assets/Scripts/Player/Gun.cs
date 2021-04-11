@@ -23,12 +23,13 @@ public class Gun : MonoBehaviour
     [Header("Доп объекты")]
     [SerializeField] GameObject sprites;
     [SerializeField] CircleCollider2D bodyCollider;
+    [SerializeField] Animator anim;
 
-    public static Action<bool, string> OnPlayerNearly;
-    public static Action<bool, Gun> CanPickUp;
-    public static Action<Sprite, int> PickUpAction;
-    public static Action DropAction;
-    public static Action<int> ChangeBulletInMagasineAction;
+    public static Action<bool, string> OnPlayerNearly;      // для показа оповещения отправляется UI
+    public static Action<bool, Gun> CanPickUp;              // отправляется игроку чтобы показать что может поднять
+    public static Action<Sprite, int> PickUpAction;         // для UI показать картинку оружия и кол-во патронов
+    public static Action DropAction;                        // для UI показать что оружие выброшено
+    public static Action<int> ChangeBulletInMagasineAction; // для UI обновить колво патронов
 
     int _bulletInMagazine;
     bool _canShot;
@@ -36,13 +37,10 @@ public class Gun : MonoBehaviour
     bool _playerReload;
 
     #region Awake Start Update
-    void Awake()
-    {
-    }
-
-    private void Start()
+    private void OnEnable()
     {
         _canShot = true;
+        _bulletInMagazine = 0;
     }
     #endregion
 
@@ -150,7 +148,10 @@ public class Gun : MonoBehaviour
     public void PickUp()
     {
         Pick(true);
-        _bulletInMagazine = gunSO.bulletInMagazine;
+
+        //перезарядка
+        audioSource.PlayOneShot(gunSO.reloadAmmoClip);
+        StartCoroutine(Reloading(gunSO.bulletInMagazine));
 
         transform.localPosition = Vector3.zero;
         transform.localRotation = Quaternion.identity;
@@ -169,8 +170,9 @@ public class Gun : MonoBehaviour
 
     void Pick(bool up)
     {
-        sprites.SetActive(!up);
-        bodyCollider.enabled = !up;
+        anim.SetBool(AnimParam.PickUp, up);
+        //sprites.SetActive(!up);
+        //bodyCollider.enabled = !up;
     }
 
     // отправляет рассылку UI, если он подписан
@@ -197,9 +199,6 @@ public class Gun : MonoBehaviour
         switch (collision.tag)
         {
             case TagsNames.Player:
-                //PlayerAttack pa = collision.GetComponent<PlayerAttack>();
-                //if (pa)
-                //    pa.canPickUp = false;
                 PlayerNearly(false);
                 break;
         }

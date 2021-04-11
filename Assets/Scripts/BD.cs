@@ -115,6 +115,7 @@ public static class AnimParam
     public static string Attack = "Attack";
     public static string Shot = "Shot";
     public static string Dead = "Dead";
+    public static string PickUp = "PickUp";
 }
 
 public static class LayersNames

@@ -68,16 +68,12 @@ public class Bullet : MonoBehaviour
     {
         if (_isDead) return;
 
-        // сколько колизий сможет обработать за один кадр
         HitSelf();
 
         if (collision.gameObject.TryGetComponent(out Health health))
         {
             health.Hit(damage);
         }
-
-        // в любом случае после соприкосновения уничтожаем
-        //Dead();
     }
     #endregion
 }

@@ -2,8 +2,8 @@
 using UnityEngine;
 
 public class SpawnerAI : Spawner
-{
-    [Header("Доп параметры для зомби")]
+{    
+    [Header("Доп параметры для AI")]
     [SerializeField] Transform target;
 
     private void OnEnable()
@@ -23,9 +23,11 @@ public class SpawnerAI : Spawner
 
             int j = Random.Range(0, prefabs.Count);
 
-            AI ai = Lean.Pool.LeanPool.Spawn(prefabs[j], instatiatePos, Quaternion.Euler(0, 0, Random.value * 360), transform).GetComponent<AI>();
-
-            ai.SetTarget(target, trackingInfinityly: true);
+            if (Lean.Pool.LeanPool.Spawn(prefabs[j], instatiatePos, Quaternion.Euler(0, 0, Random.value * 360), transform).TryGetComponent(out AI ai))
+            {
+                ai.SetTarget(target, trackingInfinityly: true);
+                ai.ChangeStage(States.WalkToAttack);
+            }
 
             yield return new WaitForSeconds(rateSpawn);
         }
