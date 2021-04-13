@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 214c05580df2b1646b80a6708544aadf, type: 3}
   m_Name: Pistol
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 4360852fa29e80046b568a1d023ce60a, type: 3}
   type: 1
-  countModiffier: 2
+  countModiffier: 9

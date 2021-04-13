@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 214c05580df2b1646b80a6708544aadf, type: 3}
   m_Name: Shotgun
   m_EditorClassIdentifier: 
-  sprite: {fileID: 0}
+  sprite: {fileID: 21300000, guid: 5ebca926f39a1b745889ee96922b7fc5, type: 3}
   type: 0
-  countModiffier: 3
+  countModiffier: 5

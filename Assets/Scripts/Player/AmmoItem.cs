@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 public class AmmoItem : MonoBehaviour
 {
@@ -7,7 +8,8 @@ public class AmmoItem : MonoBehaviour
     [SerializeField] SpriteRenderer spriteRenderer;
 
     [Header("Переменные")]
-    [SerializeField] float lifeTime;
+    [SerializeField] float lifeTimeNormal;
+    [SerializeField] float lifeTimePrepareDie;
 
     [Header("Для проверки")]
     [SerializeField] AmmoSO ammoSO;
@@ -15,6 +17,10 @@ public class AmmoItem : MonoBehaviour
 
     public static Action<AmmoType, int> PickUpAmmo; // для UI отображение 
 
+    private void OnEnable()
+    {
+        StartCoroutine(LifeTime(lifeTimeNormal, true));
+    }
 
     #region Create from Spawn
     public void SetAmmoSO(AmmoSO ammo)
@@ -33,4 +39,22 @@ public class AmmoItem : MonoBehaviour
         Lean.Pool.LeanPool.Despawn(gameObject);
     }
     #endregion
+
+    #region LifeTime Corutine
+    IEnumerator LifeTime(float lifeTime, bool isNormalTime)
+    {
+        yield return new WaitForSeconds(lifeTime);
+
+        if (isNormalTime)
+        {
+            anim.SetTrigger(AnimParam.PrepareDie);
+            StartCoroutine(LifeTime(lifeTimePrepareDie, false));
+        }
+        else
+            anim.SetTrigger(AnimParam.Dead);
+    }
+    #endregion
+
+    // запуск в анимации
+    public void Despawn() => Lean.Pool.LeanPool.Despawn(gameObject);
 }
