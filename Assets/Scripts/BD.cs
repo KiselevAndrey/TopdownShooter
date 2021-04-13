@@ -80,6 +80,41 @@ public static class HelperVector
 
         return temp;
     }
+
+    /// <summary>
+    /// возвращает новую позицию в требуемом радиусе
+    /// </summary>
+    public static Vector2 NewPointFromRange(Vector2 startPos, float range)
+    {
+        Vector2 temp = startPos;
+
+        temp.x += (UnityEngine.Random.value - 0.5f) * range;
+        temp.y += (UnityEngine.Random.value - 0.5f) * range;
+
+        return temp;
+    }
+
+    /// <summary>
+    /// возвращает новый рандомный вектор
+    /// </summary>
+    public static Vector3 NewRadomVector(float minValue, float maxValue)
+    {
+        Vector3 temp = Vector3.zero;
+
+        temp.x += UnityEngine.Random.Range(minValue, maxValue);
+        temp.y += UnityEngine.Random.Range(minValue, maxValue);
+        temp.z += UnityEngine.Random.Range(minValue, maxValue);
+
+        return temp;
+    }
+
+    /// <summary>
+    /// возвращает новый рандомный вектор от 0 до нужного значения
+    /// </summary>
+    public static Vector3 NewRadomVector(float maxValue)
+    {
+        return NewRadomVector(0, maxValue);
+    }
 }
 #endregion
 

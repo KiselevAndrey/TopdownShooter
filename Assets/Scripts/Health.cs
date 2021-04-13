@@ -31,7 +31,7 @@ public class Health : MonoBehaviour
     [SerializeField] Animator anim;
     [SerializeField] AudioSource audioSource;
 
-    public static Action<string, Vector2> ImDeath;
+    public static Action<LayerMask, Vector2> ImDeath;  // передает слой и позицию
 
     bool _isDead;
     float _currentHealth;
@@ -114,7 +114,7 @@ public class Health : MonoBehaviour
 
     void Death(bool playSound)
     {
-        ImDeath?.Invoke(gameObject.tag, transform.position);
+        ImDeath?.Invoke(gameObject.layer, transform.position);
 
         _currentHealth = 0;
         SetActiveUI(false);
