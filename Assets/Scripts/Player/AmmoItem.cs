@@ -36,7 +36,7 @@ public class AmmoItem : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         PickUpAmmo?.Invoke(GetAmmoType(), count);
-        Lean.Pool.LeanPool.Despawn(gameObject);
+        anim.SetBool(AnimParam.PickUp, true);
     }
     #endregion
 

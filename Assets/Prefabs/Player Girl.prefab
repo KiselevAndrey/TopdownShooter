@@ -149,7 +149,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4278715077286230497}
-  - component: {fileID: 4754124848651246948}
   - component: {fileID: 2573446481173791455}
   m_Layer: 9
   m_Name: Arm
@@ -172,19 +171,6 @@ Transform:
   m_Father: {fileID: 8702202125423338020}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4754124848651246948
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1041230888710411675}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d60b41ff9d445e48a45fa38f24157bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spriteRenderer: {fileID: 0}
 --- !u!212 &2573446481173791455
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -247,6 +233,7 @@ GameObject:
   - component: {fileID: 8702202125423338024}
   - component: {fileID: 8702202125423338029}
   - component: {fileID: 4620564190669898736}
+  - component: {fileID: 3738167348247885726}
   - component: {fileID: 8702202125423338025}
   - component: {fileID: 8702202125423338022}
   - component: {fileID: 8702202125423338023}
@@ -319,7 +306,6 @@ MonoBehaviour:
   gunPos: {fileID: 8702202126361472808}
   gun: {fileID: 0}
   armPos: {fileID: 4278715077286230497}
-  armAttack: {fileID: 4754124848651246948}
   armDamage: 3
   armRate: 0.5
 --- !u!114 &4620564190669898736
@@ -352,6 +338,18 @@ MonoBehaviour:
   deathClips: []
   anim: {fileID: 0}
   audioSource: {fileID: 0}
+--- !u!114 &3738167348247885726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8702202125423338021}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd8bb5374ef38174ea152d8463e97fb1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &8702202125423338025
 SpriteRenderer:
   m_ObjectHideFlags: 0

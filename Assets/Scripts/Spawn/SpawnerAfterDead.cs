@@ -8,6 +8,7 @@ public class SpawnerAfterDead : MonoBehaviour
     [SerializeField] protected float range;
     [SerializeField] protected bool randomRotation;
     [SerializeField] protected float secondsBeforeSpawn;
+    [SerializeField, Range(0, 100)] protected float spawnChance;
 
     #region On Enadle Disable Destroy
     private void OnEnable()
