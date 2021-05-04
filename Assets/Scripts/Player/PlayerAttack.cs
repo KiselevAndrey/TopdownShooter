@@ -18,6 +18,7 @@ public class PlayerAttack : MonoBehaviour
 
     bool _canArmAttack = true;
     bool _canPickUp;
+    int _co;
 
     #region Awake Start Update OnDestroy
     void Awake()
@@ -25,10 +26,6 @@ public class PlayerAttack : MonoBehaviour
         _anim = GetComponent<Animator>();
         _player = GetComponent<Player>();
         Gun.CanPickUp += CanPickUp;
-    }
-
-    private void Start()
-    {
     }
 
     void Update()
@@ -101,9 +98,27 @@ public class PlayerAttack : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.E))
         {
-            if (gun && gun.CanShoot()) DropWeapon();
+            if (gun && gun.CanShoot())
+            {
+                if (_canPickUp || DoubleClickToDrop())
+                    DropWeapon();
+            }
+
             if (_canPickUp) PickUpWeapon();
         }
+    }
+
+    bool DoubleClickToDrop()
+    {
+        _co++;
+        StartCoroutine(Droping());
+        return _co > 1;
+    }
+
+    IEnumerator Droping()
+    {
+        yield return new WaitForSeconds(0.3f);
+        _co = 0;
     }
 
     void DropWeapon()

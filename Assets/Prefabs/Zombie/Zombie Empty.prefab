@@ -55,7 +55,7 @@ MonoBehaviour:
   range: 10
   secondsForNextFinding: 0.5
   trowRayCast: 1
-  drawGizmo: 1
+  drawGizmo: 0
   gizmoColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1 &4580537535975609313
 GameObject:
@@ -80,7 +80,7 @@ GameObject:
   - component: {fileID: 6684080819162489675}
   - component: {fileID: 4019033129723755756}
   m_Layer: 10
-  m_Name: NewZombie
+  m_Name: Zombie Empty
   m_TagString: Zombie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120,24 +120,23 @@ MonoBehaviour:
   shot: {fileID: 4580537535975609312}
   attack: {fileID: 4580537535975609327}
   health: {fileID: 5243189552495830851}
-  startState: 1
   anim: {fileID: 6357109553318448052}
   senceOrgans: {fileID: 241253228693381269}
   body: {fileID: 823889356710613332}
   audioSource: {fileID: 3279683349901947341}
   findTarget:
-  - {fileID: 8300000, guid: b381e13615e873147a47f0b2c543b650, type: 3}
+  - {fileID: 8300000, guid: ee4a16df148d6c4499e9eddeb3817762, type: 3}
   - {fileID: 8300000, guid: 0569e7a7aafca064a9fd24e39a2c1db3, type: 3}
   - {fileID: 8300000, guid: ff632bf87b19b614fab52c26c9dc17c8, type: 3}
-  whoToTell:
+  myAliance:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 0
+  chanceToBeDefender: 0
+  guardTarget: {fileID: 0}
   currentState: 0
   attackTarget: {fileID: 0}
-  guardTarget: {fileID: 0}
   direction: {x: 0, y: 0}
   distance: 0
-  isDie: 0
 --- !u!114 &4580537535975609326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -330,7 +329,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 3
+  MinDistance: 1
   MaxDistance: 30
   Pan2D: 0
   rolloffMode: 0
@@ -375,7 +374,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.75
+      value: 0.8
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -458,7 +457,7 @@ MonoBehaviour:
   version: 2
   radius: 0.5
   height: 2
-  repathRate: 0.5
+  repathRate: 3.46
   canSearch: 1
   canMove: 1
   maxSpeed: 1
@@ -475,7 +474,7 @@ MonoBehaviour:
   slowdownDistance: 1.5
   pickNextWaypointDist: 1
   endReachedDistance: 1
-  alwaysDrawGizmos: 0
+  alwaysDrawGizmos: 1
   slowWhenNotFacingTarget: 0
   whenCloseToDestination: 0
   constrainInsideGraph: 0

@@ -48,6 +48,7 @@ public class AIWalk : MonoBehaviour
             case States.WalkToAttack:
                 if (shotPriority ? ai.shot.CanShoot() : ai.attack.CanAttack())
                 {
+                    print(ai.attack.CanAttack());
                     ai.anim.SetFloat(AnimParam.Speed, 0);
                     ChangeState();
                 }
@@ -85,7 +86,6 @@ public class AIWalk : MonoBehaviour
     public void StartWalk(Transform target)
     {
         aiDestSetter.target = target;
-
         StartWalk();
     }
 
@@ -131,6 +131,7 @@ public class AIWalk : MonoBehaviour
                     ai.ChangeStage(States.Attack);
                 else
                     ai.ChangeStage(States.WalkToAttack);
+                print(ai.currentState);
                 break;
         }
     }
