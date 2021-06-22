@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b73693305e223049a4501f60a2e7879, type: 3}
   m_Name: ShotGun H-19
   m_EditorClassIdentifier: 
-  fireRate: 0.1
+  fireRate: 0.3
   spreadRadius: 2
   bulletPerShot: 20
   ammoPerShot: 1
-  bulletInMagazine: 500
+  bulletInMagazine: 5
   reloadOneBulletEach: 1
   reloadTime: 0.3
   bulletPrefab: {fileID: 1800685372759179360, guid: 0f46c54a958b08f49a3930aeaa69f155,
